@@ -1,5 +1,12 @@
 <div class="container">
-  <h1 class="title">
-    {{ 'PAGES.HOME.TITLE' | translate }}
-  </h1>
+  <ul class="main-menu">
+    <li (click)="openFile()">
+      Open file
+    </li>
+    <li (click)="openFolder()">
+      Open folder
+    </li>
+  </ul>
+  <input hidden type="file" (change)="changeFiles()"  #filePicker/>
+  <input hidden type="file"  (change)="changeFolders()"  webkitdirectory #folderPicker/>
 </div>
