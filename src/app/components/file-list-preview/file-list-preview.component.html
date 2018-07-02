@@ -1,0 +1,14 @@
+<div class="path-list-container">
+  <div class="control-buttons">
+  <span class="del-butt"> Remove All </span> 
+  <span class="confirm-butt"> Edit tags</span>
+</div>
+  <ul>
+    <li 
+        *ngFor="let entry of pathEntries"
+        [ngClass]="{false:'folder',true:'file'}[entry.isFile]"> 
+        
+      <img (click)="deleteEntry(entry)" src="../../../assets/images/delete_icon.png" class="del-icon"/>{{entry.path}}
+     </li >
+  </ul>
+</div>

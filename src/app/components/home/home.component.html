@@ -1,12 +1,14 @@
-<div class="container">
-  <ul class="main-menu">
+<ul class="main-menu">
     <li (click)="openFile()">
       Open file
     </li>
     <li (click)="openFolder()">
       Open folder
     </li>
-  </ul>
-  <input hidden type="file" (change)="changeFiles()"  #filePicker/>
+</ul>
+
+  <input hidden type="file" (change)="changeFiles()"  #filePicker multiple/>
   <input hidden type="file"  (change)="changeFolders()"  webkitdirectory #folderPicker/>
+<div *ngIf="filesSelected">
+<app-file-list-preview></app-file-list-preview>
 </div>

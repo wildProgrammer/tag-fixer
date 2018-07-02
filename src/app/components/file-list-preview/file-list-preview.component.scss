@@ -1,0 +1,80 @@
+::-webkit-scrollbar {
+    width: 10px;
+    
+}
+/* Track */
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.397); 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(255, 255, 255); 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+.path-list-container{
+    scroll-behavior: auto;
+    max-height: 40vh;
+    overflow-y: auto;
+    
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    .control-buttons{
+        display: flex;
+        flex-direction: row;
+
+        & span{
+            padding: 10px;
+            cursor: pointer;
+            color: black;
+        }
+        & .del-butt{
+            background: red;
+        }
+
+        & .confirm-butt{
+            background: #00bd4f;
+        }
+    }
+    & ul{
+        box-shadow: inset 0px 4px 86px -15px rgb(0, 0, 0);
+    margin:0;
+    padding: 15px;
+        display: flex;
+        float: left;
+        flex-direction: column;
+        // max-width: 300px;
+        color: #ffffff;
+        font-weight: 500;
+        list-style: none;
+        margin-right: 2px;
+        // background: rgba(255, 255, 255, 0.397);
+        
+        & li{
+            padding: 0.3em;
+            margin-bottom: 3px;
+            line-height: 50px;
+            text-align: left;
+            vertical-align:middle;
+        }
+        & li.file{
+            // background: linear-gradient(to bottom, rgba(129,106,0,0.) 0%,rgba(0,186,0,0.65) 50%,rgba(0,124,52,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            background: linear-gradient(to right,rgba(0,124,52,0.5) 0%,rgba(104, 250, 165, 0.3) 50%,rgba(0,124,52,0.5) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        }
+        & li.folder{
+            background: linear-gradient(to right,rgba(129,106,0,0.5) 0%,rgba(247, 216, 82, 0.3) 50%,rgba(129,106,0,0.5) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+            // background: linear-gradient(to right, rgba(129,106,0,0) 0%,rgba(129,106,0,0.65) 50%,rgba(0,124,52,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        }
+    }
+
+}
+
+.del-icon{
+    float: left;
+    cursor: pointer;
+}

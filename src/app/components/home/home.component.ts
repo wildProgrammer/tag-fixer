@@ -1,18 +1,26 @@
 import { Component, OnInit, ViewChild, Directive, ElementRef } from '@angular/core';
+import { PathEntry } from '../../PathEntry';
+import { FilesListService } from '../../files-list.service'
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  providers : [FilesListService]
 })
 
 export class HomeComponent implements OnInit {
 
-  paths: any[] = [];
+
   @ViewChild('filePicker')
   openFileInput : ElementRef;
   @ViewChild('folderPicker')
   openDirectoryInput : ElementRef;
-  constructor() { }
+
+  get filesSelected() : boolean{
+    return this.pathsService.length != 0;
+  }
+
+  constructor(private pathsService: FilesListService) { }
 
   ngOnInit() {
   }
@@ -25,15 +33,21 @@ export class HomeComponent implements OnInit {
     this.openDirectoryInput.nativeElement.click();
   }
 
-  changeFiles(){
-    this.paths = this.openFileInput.nativeElement.files;
+  private addPaths(addedPaths : [any], isFile: boolean){
+    Array.from(addedPaths).forEach(el => {
+      this.pathsService.addEntry(new PathEntry(el.path, isFile));
+    });
+  }
 
-    console.log(this.paths)
+  changeFiles(){
+    this.addPaths(this.openFileInput.nativeElement.files, true);
+    console.log(this.pathsService.pathEntries)
   }
 
   changeFolders(){
-    this.paths = this.openDirectoryInput.nativeElement.files;
-
-    console.log(this.paths)
+    this.addPaths(this.openDirectoryInput.nativeElement.files, false);
+    console.log(this.pathsService.pathEntries)
   }
+
+  
 }
