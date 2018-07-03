@@ -37,7 +37,8 @@
     "e2e": "npm run postinstall:web && ng e2e"
   },
   "dependencies": {
-    "component": "^1.1.0"
+    "component": "^1.1.0",
+    "node-id3": "^0.1.5"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.6.3",

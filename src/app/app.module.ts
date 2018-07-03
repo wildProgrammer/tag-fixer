@@ -20,7 +20,8 @@ import { WebviewDirective } from './directives/webview.directive';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { FileListPreviewComponent } from './components/file-list-preview/file-list-preview.component';
-
+import { TagEditComponent } from './components/tag-edit/tag-edit.component';
+import { RouterModule, Router } from '@angular/router';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -31,13 +32,15 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     HomeComponent,
     WebviewDirective,
-    FileListPreviewComponent
+    FileListPreviewComponent,
+    TagEditComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
+    RouterModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

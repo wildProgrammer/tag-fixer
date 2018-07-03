@@ -24,27 +24,14 @@
     padding-left: 0;
     display: flex;
     flex-direction: column;
-    .control-buttons{
-        display: flex;
-        flex-direction: row;
-
-        & span{
-            padding: 10px;
-            cursor: pointer;
-            color: black;
-        }
-        & .del-butt{
-            background: red;
-        }
-
-        & .confirm-butt{
-            background: #00bd4f;
-        }
-    }
+    background: #1a1212;
+    padding-bottom: 20px;
     & ul{
-        box-shadow: inset 0px 4px 86px -15px rgb(0, 0, 0);
-    margin:0;
-    padding: 15px;
+        // box-shadow: inset 0px 4px 86px -15px rgb(0, 0, 0);
+        height: 100%;
+        
+        margin:0;
+        padding: 15px;
         display: flex;
         float: left;
         flex-direction: column;
@@ -78,3 +65,27 @@
     float: left;
     cursor: pointer;
 }
+
+.control-buttons{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        & li span{
+            padding: 10px;
+            cursor: pointer;
+            color: black;
+           
+            margin-right: 10px;
+        }
+
+        & li {
+             list-style: none;
+        }
+        & .del-butt{
+            background: red;
+        }
+
+        & .confirm-butt{
+            background: #00bd4f;
+        }
+    }

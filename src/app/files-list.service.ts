@@ -1,17 +1,21 @@
 import { Injectable } from '@angular/core';
 import { PathEntry } from './PathEntry'
-import { FileListPreviewComponent} from './components/file-list-preview/file-list-preview.component'
 @Injectable({
   providedIn: 'root'
 })
 export class FilesListService {
-  private entries : PathEntry[] = [];
-  constructor() { }
+  private entries : PathEntry[];
+  constructor() {
+    console.log("entries=" + this.entries);
+    this.entries = [];
+    console.log("constructor of service")
+   }
   addEntry(entry : PathEntry){
     if(this.entries.findIndex(el=>el.path===entry.path) === -1){
       this.entries.push(entry);
       entry.inList = true;
     }
+    console.log(this.entries);
   }
 
   removeEntry(entry : PathEntry){
@@ -27,4 +31,14 @@ export class FilesListService {
   get pathEntries()  { return this.entries; }
 
   get length() { return this.entries.length; }
+  removeAllEntries(){
+    for(let e of this.entries){
+      e.inList=false;
+    }
+    this.entries = [];
+  }
+
+  getByIndex(index: number): PathEntry{
+    return this.entries[index];
+  }
 }
