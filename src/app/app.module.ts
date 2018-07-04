@@ -22,6 +22,9 @@ import { HomeComponent } from './components/home/home.component';
 import { FileListPreviewComponent } from './components/file-list-preview/file-list-preview.component';
 import { TagEditComponent } from './components/tag-edit/tag-edit.component';
 import { RouterModule, Router } from '@angular/router';
+import { FilesListService } from "./files-list.service";
+import { DisplayMenuComponent } from './components/display-menu/display-menu.component';
+import { SuggestionsComponent } from './components/suggestions/suggestions.component'
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -33,7 +36,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeComponent,
     WebviewDirective,
     FileListPreviewComponent,
-    TagEditComponent
+    TagEditComponent,
+    DisplayMenuComponent,
+    SuggestionsComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +54,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [ElectronService],
+  providers: [ElectronService, FilesListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

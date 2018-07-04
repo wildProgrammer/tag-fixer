@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { ElectronService } from './providers/electron.service';
-
+import { FilesListService } from './files-list.service'
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -11,7 +11,8 @@ describe('AppComponent', () => {
         AppComponent
       ],
       providers: [
-        ElectronService
+        ElectronService,
+        FilesListService
       ],
       imports: [
         RouterTestingModule,

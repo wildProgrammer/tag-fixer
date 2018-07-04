@@ -6,8 +6,7 @@ import { ID3TagManager } from '../../ID3TagManager';
 @Component({
   selector: 'app-tag-edit',
   templateUrl: './tag-edit.component.html',
-  styleUrls: ['./tag-edit.component.scss'],
-  providers: [FilesListService]
+  styleUrls: ['./tag-edit.component.scss']
 })
 export class TagEditComponent implements OnInit {
 
@@ -25,6 +24,7 @@ export class TagEditComponent implements OnInit {
     console.log(entry);
     let manager = new ID3TagManager(entry.path);
     this.tags = manager.tags;
+    console.log(this.tags);
   }
 
 }

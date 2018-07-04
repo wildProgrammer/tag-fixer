@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { PathEntry } from './PathEntry'
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
+  useExisting : true
 })
 export class FilesListService {
   private entries : PathEntry[];
