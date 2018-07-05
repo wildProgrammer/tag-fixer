@@ -1,0 +1,28 @@
+.container{
+    display: flex;
+    align-content: stretch;
+    height: 100vh;
+    flex-direction: row;
+}
+
+.file-list{
+    overflow: hidden;
+    padding: 5px;
+    ul{
+        display: flex;
+        flex-direction: column;
+        height:100%;
+    }
+    li{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100px;
+        background: #007c34;
+        transition:  background 0.1s text-shadow 0.1s; 
+    }
+    li:hover{
+        background: #00bd4f;
+        text-shadow: 1px 1px black;
+    }
+}

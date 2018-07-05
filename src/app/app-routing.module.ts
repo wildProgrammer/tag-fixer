@@ -8,8 +8,9 @@ const routes: Routes = [
     {
         path: '',
         component: HomeComponent,
-        outlet: 'main'
-    }, 
+        outlet: 'main',
+        
+    },
     {
         path: 'display',
         component: DisplayMenuComponent,
@@ -28,6 +29,7 @@ const routes: Routes = [
 
         ]
     }
+    
     
     
 ];

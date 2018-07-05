@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FilesListService } from '../../files-list.service'
+import { ActivatedRoute } from '@angular/router';
+import { ID3TagManager } from '../../ID3TagManager';
+import { PathEntry } from '../../PathEntry';
 
 @Component({
   selector: 'app-display-menu',
@@ -7,9 +11,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisplayMenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private filesService: FilesListService) {
+    filesService.searchInFolders();
+   }
 
   ngOnInit() {
   }
 
+  get pathEntries(): PathEntry[]{
+    return this.filesService.pathEntries;
+  }
 }

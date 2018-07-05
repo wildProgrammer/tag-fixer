@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
 
   openFile(){
     this.openFileInput.nativeElement.click();
+    console.log("open file click")
   }
   
   openFolder() {
@@ -42,15 +43,18 @@ export class HomeComponent implements OnInit {
   }
 
   changeFiles(){
-    let files:any[] = Array.from(this.openFileInput.nativeElement.files).filter((el:any) => hasValidExtension(el.path));
+    let files:any[] = Array.from(this.openFileInput.nativeElement.files)
+                      .filter((el:any) => hasValidExtension(el.path));
     this.addPaths(files, true);
     console.log(this.pathsService.pathEntries)
+    this.openFileInput.nativeElement.value="";
   }
 
   changeFolders(){
     this.addPaths(this.openDirectoryInput.nativeElement.files, false);
     console.log(this.pathsService.pathEntries)
     console.log(getFilesFromFolder(this.openDirectoryInput.nativeElement.files[0].path))
+    this.openDirectoryInput.nativeElement.value="";
   }
 
   

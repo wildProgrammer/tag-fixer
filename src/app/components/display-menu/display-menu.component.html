@@ -1,3 +1,11 @@
-<p>
-  display-menu works!
-</p>
+<div class="container">
+    <div class="file-list">
+        <ul>
+            <li *ngFor="let entry of pathEntries" >
+                {{entry.fileName}}
+            </li>
+        </ul>
+    </div>
+    <router-outlet name="display"></router-outlet>
+</div>
+

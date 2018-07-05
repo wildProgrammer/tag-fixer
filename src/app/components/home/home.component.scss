@@ -30,3 +30,11 @@ src: url('../../../assets/fonts/Poppins-Medium.ttf');
   }
   
 }
+
+.container{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
