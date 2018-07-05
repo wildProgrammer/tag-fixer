@@ -58,5 +58,6 @@ export class FilesListService {
     }
     console.log(pathSet.values);
     this.entries = Array.from(pathSet).map(el => new PathEntry(el, true));
+    console.log(this.entries);
   }
 }

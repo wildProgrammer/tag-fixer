@@ -1,11 +1,25 @@
 <div class="container">
     <div class="file-list">
         <ul>
-            <li *ngFor="let entry of pathEntries" >
-                {{entry.fileName}}
+            <li *ngFor="let entry of pathEntries" 
+                (click)="selectEntry(entry)"
+                [ngClass]="{selected: entry == selectedEntry}"
+            >
+               {{entry.fileName}}
             </li>
+            <li>04 - A Step Back.mp3</li>
+            <li>04 - A Step Back.mp3</li>
+            <li>04 - A Step Back.mp3</li>
+            <li>04 - A Step Back.mp3</li>
         </ul>
     </div>
-    <router-outlet name="display"></router-outlet>
+    <div class="edit-window">
+        <div *ngIf="editing">
+            <app-tag-edit [entry]="selectedEntry"></app-tag-edit>
+        </div>
+        <div *ngIf="suggesting">
+            <app-suggestions [entry]="selectedEntry"></app-suggestions>
+        </div>
+    </div>
 </div>
 

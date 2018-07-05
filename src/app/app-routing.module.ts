@@ -8,13 +8,11 @@ const routes: Routes = [
     {
         path: '',
         component: HomeComponent,
-        outlet: 'main',
         
     },
     {
         path: 'display',
         component: DisplayMenuComponent,
-        outlet: 'main',
         children: [
             {
                 path: 'edit/:id',

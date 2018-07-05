@@ -1,28 +1,53 @@
 .container{
     display: flex;
-    align-content: stretch;
+    align-content: unset;
     height: 100vh;
+    width: 100wh;
     flex-direction: row;
+    margin: 0;
 }
 
+
 .file-list{
-    overflow: hidden;
-    padding: 5px;
-    ul{
+    // padding: 5px;
+    float:left;
+    height: 100vh;
+    background: linear-gradient(to right, rgba(26,18,18,0.1) 0%,rgba(0,119,47,0.3) 14%,rgba(0,119,47,0.3) 14%,rgba(0,119,47,0.3) 50%,rgba(0,119,47,0.3) 85%,rgba(26,18,18,0.1) 100%);
+    & ul{
         display: flex;
         flex-direction: column;
         height:100%;
-    }
-    li{
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        width: 100px;
-        background: #007c34;
-        transition:  background 0.1s text-shadow 0.1s; 
-    }
-    li:hover{
-        background: #00bd4f;
-        text-shadow: 1px 1px black;
+        left:0;
+        padding-top:2em;
+        margin:0;
+        padding-left: 4px;
+        padding-right: 4px;
+
+        li{
+            text-align: center;
+            white-space: nowrap;
+            padding:4px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 200px;
+            background: #007c34c9;
+            transition:  background 0.2s text-shadow 0.2s color 0.2s; 
+            cursor: pointer;
+            color: white;
+        }
+        li:hover{
+            background: #00bd4f;
+            text-shadow: 1px 1px black;
+        }
+        li .edited{
+            background:#32c3dd;
+            color: black;
+        }
+        li .selected{
+            background: #00bd4f;
+            color: white;
+            text-shadow: 1px 1px black;
+            font-weight: bold;
+        }
     }
 }

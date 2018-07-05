@@ -15,10 +15,15 @@ export class PathEntry{
         if(this.tagManager === null)
             this.tagManager = new ID3TagManager(this.path);
         this.tags = this.tagManager.tags;
+        this.initialTags = this.tags;
     }
 
     get fileName(){
         return pathTools.basename(this.path);
+    }
+
+    isEdited(){
+        return this.initialTags !== this.tags;
     }
 
 }
