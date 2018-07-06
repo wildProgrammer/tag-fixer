@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FilesListService } from '../../files-list.service'
 import { ActivatedRoute } from '@angular/router';
 import { ID3TagManager } from '../../ID3TagManager';
+import { PathEntry } from '../../PathEntry';
 
 @Component({
   selector: 'app-tag-edit',
@@ -10,21 +11,13 @@ import { ID3TagManager } from '../../ID3TagManager';
 })
 export class TagEditComponent implements OnInit {
 
-  position : number;
+  @Input()
+  entry: PathEntry;
   tags : any;
-  constructor(private filesService: FilesListService
-            , private route: ActivatedRoute) {
-        this.position = route.snapshot.params['id'];
+  constructor(private filesService: FilesListService) {
    }  
 
   ngOnInit() {
-    console.log("object list:" + this.position)
-    console.log(this.filesService.pathEntries);
-    let entry = this.filesService.getByIndex(Number(this.position));
-    console.log(entry);
-    let manager = new ID3TagManager(entry.path);
-    this.tags = manager.tags;
-    console.log(this.tags);
   }
 
 }

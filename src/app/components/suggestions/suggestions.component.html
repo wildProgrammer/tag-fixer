@@ -1,3 +1,20 @@
-<p>
-  suggestions works!
-</p>
+<div class = "title">
+  Suggestions
+</div>
+<ul class = "suggestion-container">
+  <li *ngFor="let suggest of suggestions">
+    <table>
+      <tr>
+        <th colspan=2>{{suggest.title}}</th>
+      </tr>
+      <tr> 
+        <td>Title:</td>
+        <td>{{suggest.getData().title}}</td>
+      </tr> 
+      <tr> 
+        <td>Artist:</td>
+        <td>{{suggest.getData().artist}}</td>
+      </tr> 
+    </table>
+  </li>
+</ul>

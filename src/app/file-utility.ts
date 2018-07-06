@@ -8,7 +8,6 @@ export function getFilesFromFolder(path : String): String[] {
             let absPath = paths.join(path, file);
             let stat = fs.lstatSync(absPath);
             if (stat.isFile() &&  hasValidExtension(absPath)){
-                console.log(absPath);
                 filePaths.push(absPath);
             } else if(stat.isDirectory()){
                 filePaths = filePaths.concat(getFilesFromFolder(absPath));
@@ -19,8 +18,6 @@ export function getFilesFromFolder(path : String): String[] {
 }
 
 export function hasValidExtension(path: String): boolean{
-    console.log(path);
-    console.log(paths.extname(path).toLowerCase() == ".mp3")
     return paths.extname(path).toLowerCase() == ".mp3"
 }
 

@@ -3,22 +3,26 @@
         <ul>
             <li *ngFor="let entry of pathEntries" 
                 (click)="selectEntry(entry)"
-                [ngClass]="{selected: entry == selectedEntry}"
+                [ngClass]="{'selected': entry === selectedEntry,
+                            'edited': entry.isEdited()}"
             >
                {{entry.fileName}}
             </li>
+            <!-- <li>04 - A Step Back.mp3</li>
             <li>04 - A Step Back.mp3</li>
             <li>04 - A Step Back.mp3</li>
-            <li>04 - A Step Back.mp3</li>
-            <li>04 - A Step Back.mp3</li>
+            <li>04 - A Step Back allalalalalalalalal.mp3</li> -->
         </ul>
     </div>
     <div class="edit-window">
-        <div *ngIf="editing">
+        <div class="path-title">
+            <h3>{{selectedEntry.path}}</h3>
+        </div>
+        <div *ngIf="selectedEntry && selectedEntry.isEdited()">
             <app-tag-edit [entry]="selectedEntry"></app-tag-edit>
         </div>
-        <div *ngIf="suggesting">
-            <app-suggestions [entry]="selectedEntry"></app-suggestions>
+        <div *ngIf="selectedEntry && !selectedEntry.isEdited()">
+            <app-suggestions [song]="selectedEntry"></app-suggestions>
         </div>
     </div>
 </div>

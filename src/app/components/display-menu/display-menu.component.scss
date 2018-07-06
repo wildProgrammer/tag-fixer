@@ -1,3 +1,7 @@
+$bright-green: #00bd4f;
+$dark-brown: #2b1f1f;
+$moderate-green: #007c34;
+$edited: #32c3dd;
 .container{
     display: flex;
     align-content: unset;
@@ -12,7 +16,7 @@
     // padding: 5px;
     float:left;
     height: 100vh;
-    background: linear-gradient(to right, rgba(26,18,18,0.1) 0%,rgba(0,119,47,0.3) 14%,rgba(0,119,47,0.3) 14%,rgba(0,119,47,0.3) 50%,rgba(0,119,47,0.3) 85%,rgba(26,18,18,0.1) 100%);
+    background: rgba(0,119,47,0.5);
     & ul{
         display: flex;
         flex-direction: column;
@@ -22,32 +26,53 @@
         margin:0;
         padding-left: 4px;
         padding-right: 4px;
-
-        li{
-            text-align: center;
+        
+        & li{
+            // text-align: center;
             white-space: nowrap;
-            padding:4px;
+            border-top: solid transparent 0.5em;
+            border-bottom: solid transparent 0.5em;
             overflow: hidden;
             text-overflow: ellipsis;
             width: 200px;
-            background: #007c34c9;
-            transition:  background 0.2s text-shadow 0.2s color 0.2s; 
+            text-decoration: none; 
             cursor: pointer;
             color: white;
         }
+
         li:hover{
-            background: #00bd4f;
+            background: $bright-green;
             text-shadow: 1px 1px black;
         }
+
         li .edited{
-            background:#32c3dd;
+            background: $edited;
             color: black;
         }
-        li .selected{
-            background: #00bd4f;
+
+        li.selected{
+            background: $bright-green;
             color: white;
-            text-shadow: 1px 1px black;
             font-weight: bold;
+            padding-bottom: 0.5em;
+            padding-top: 0.5em;
         }
+    }
+}
+
+.edit-window{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 100vw;
+    height: 100vh;
+    
+    .path-title{
+        text-align: center;
+        padding-top: 1em;
+        padding-bottom: 1em;
+        text-shadow: #00bd4f 1px 1px 1px;
+        color: wheat;
+        background: $edited;
     }
 }

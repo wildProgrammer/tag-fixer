@@ -1,0 +1,40 @@
+$bright-green: #00bd4f;
+$dark-brown: #2b1f1f;
+$moderate-green: #007c34;
+$edited: #32c3dd;
+$bright-brown: #382828;
+.title{
+    padding: 1em;
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+
+.suggestion-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    li{
+        list-style: none;
+        background: $bright-brown;
+        width: 300px;
+        height: 100px;
+        border: 3px solid $bright-green;
+        border-radius: 6px;
+        transition: 0.3s box-shadow 0.3s border-color;
+        padding: 10px;
+        margin-bottom: 1em;
+        cursor: pointer;
+    }
+    th{
+        color: gray;
+        margin-bottom: 0.5em;
+        font-size: 20px;
+        font-weight: 500;
+    }
+    li:hover{
+        box-shadow: inset 0px 0px 50px -6px rgba(255,255,255,1);
+        border-color: $edited;
+    }
+}

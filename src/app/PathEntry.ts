@@ -1,5 +1,6 @@
-import { ID3TagManager } from "./ID3TagManager";
+import { ID3TagManager, ID3Tags } from "./ID3TagManager";
 const pathTools = require("path");
+export { ID3TagManager, ID3Tags }; 
 export class PathEntry{
     inList : boolean = true;
     initialTags: any = null;
@@ -19,7 +20,7 @@ export class PathEntry{
     }
 
     get fileName(){
-        return pathTools.basename(this.path);
+        return pathTools.basename(this.path, '.mp3');
     }
 
     isEdited(){

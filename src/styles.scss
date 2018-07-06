@@ -1,7 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+$bright-green: #00bd4f;
+$dark-brown: #2b1f1f;
+$moderate-green: #007c34;
 html, body {
   margin: 0;
   padding: 0;
-  background: #2b1f1f;
+  background: $dark-brown;
   height: 100%;
 }
