@@ -1,1 +1,17 @@
-<h1>TAG EDIT COMPONENT WORKS!</h1>
+<h3 class="title">Tags</h3>
+<ul>
+    <li *ngFor="let tagName of tagNames">
+        <table>
+            <tr>
+                <td>
+                    <label [for]="tagName">
+                        {{tagName}}:
+                    </label>
+                </td>
+                <td>
+                    <input [name]="tagName" [(ngModel)]="tags[tagName]"/>
+                </td>
+            </tr>
+        </table>
+    </li>
+</ul>

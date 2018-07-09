@@ -8,6 +8,7 @@ require("./file-utility");
 })
 export class FilesListService {
   private entries : PathEntry[] = [];
+  selectedEntry: PathEntry = null;
   constructor() {
     console.log("entries=" + this.entries);
     console.log("constructor of service")
@@ -59,5 +60,21 @@ export class FilesListService {
     console.log(pathSet.values);
     this.entries = Array.from(pathSet).map(el => new PathEntry(el, true));
     console.log(this.entries);
+  }
+
+  selectNextEntry(){
+    var i = this.entries.findIndex(e => e == this.selectedEntry);
+    if(i < this.entries.length - 1)
+      this.selectedEntry = this.entries[i+1];
+    else 
+      this.selectedEntry = this.entries[0];
+  }
+
+  selectPreviousEntry(){
+    var i = this.entries.findIndex(e => e == this.selectedEntry);
+    if(i > 0)
+      this.selectedEntry = this.entries[i-1];
+    else 
+      this.selectedEntry = this.entries[this.entries.length];
   }
 }

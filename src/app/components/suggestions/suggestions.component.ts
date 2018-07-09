@@ -16,6 +16,7 @@ export class SuggestionsComponent implements OnInit {
   position: number;
   
   suggestions: Suggestion[];
+
   @Input()
   set song(entry: PathEntry){
     this.entry = entry;
@@ -40,6 +41,9 @@ export class SuggestionsComponent implements OnInit {
     ]
   }
 
+  toEdit(suggestion: Suggestion){
+    this.entry.tags = suggestion.tags;
+  }
   
 
 }

@@ -5,7 +5,7 @@ $edited: #32c3dd;
 .container{
     display: flex;
     align-content: unset;
-    height: 100vh;
+    height: 100%;
     width: 100wh;
     flex-direction: row;
     margin: 0;
@@ -15,19 +15,23 @@ $edited: #32c3dd;
 .file-list{
     // padding: 5px;
     float:left;
-    height: 100vh;
     background: rgba(0,119,47,0.5);
+    
+    height:auto;
     & ul{
+        margin-top: 40px;
         display: flex;
         flex-direction: column;
-        height:100%;
         left:0;
-        padding-top:2em;
-        margin:0;
-        padding-left: 4px;
-        padding-right: 4px;
+        white-space: nowrap;
+        align-items: center;
+        // margin:0;
+        padding:0;
         
         & li{
+            padding:0;
+            border-left: solid transparent 4px;
+            border-right: solid transparent 4px;
             // text-align: center;
             white-space: nowrap;
             border-top: solid transparent 0.5em;
@@ -63,16 +67,55 @@ $edited: #32c3dd;
 .edit-window{
     display: flex;
     flex-direction: column;
-    align-content: center;
+    // align-content: center;
     width: 100vw;
-    height: 100vh;
+    height: calc("100vh - 150px");
+    padding-bottom: 100px;
     
     .path-title{
         text-align: center;
-        padding-top: 1em;
-        padding-bottom: 1em;
-        text-shadow: #00bd4f 1px 1px 1px;
+        padding-top: 0.6em;
+        padding-bottom: 0.6em;
+        text-shadow: $dark-brown 1px 1px 1px;
         color: wheat;
-        background: $edited;
+        background: rgba($color: #ffffff, $alpha: 0.3);
+        font-size: 1.8vw;
+        flex-basis: 100px;
+        max-height: 100px;
+    }
+}
+
+.footer{
+    position: fixed;
+    width: 100%;
+    flex-basis: 100px;
+    bottom:0;
+    // height: 100px;
+    display: flex;
+    align-content: center;
+    overflow: hidden;
+    background: rgba($color: #ffffff, $alpha: 0.3);
+    z-index: 2;
+    ul{
+        display: flex;
+        flex-direction: row;
+        li{
+            margin-right: 0.5em;
+            list-style: none;
+            padding:20px;
+            color: $dark-brown;
+            font-weight: bold;
+            font-size: 20px;
+            border: 3px $dark-brown solid;
+            border-radius: 5px;
+            cursor: pointer;
+            background: rgba($color: #ffffff, $alpha: 0.3);
+            transition: border-color 0.25s color 0.25s background-color 0.25s;
+        }
+        li:hover{
+            color: rgba($color: #ffffff, $alpha: 0.3);
+            background:$dark-brown;
+            border-color: rgba($color: #ffffff, $alpha: 0.3);
+        }
     }
 }

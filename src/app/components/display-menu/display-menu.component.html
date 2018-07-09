@@ -24,6 +24,15 @@
         <div *ngIf="selectedEntry && !selectedEntry.isEdited()">
             <app-suggestions [song]="selectedEntry"></app-suggestions>
         </div>
+        <div class="footer">
+            <ul>
+                <li *ngIf="selectedEntry.isEdited()">Back</li>
+                <li>Previous</li>
+                <li>Next</li>
+                <li>Save changes</li>
+            </ul>
+        </div>
     </div>
+    
 </div>
 

@@ -13,7 +13,7 @@ import { PathEntry } from '../../PathEntry';
 
 export class DisplayMenuComponent implements OnInit {
   
-  selectedEntry: PathEntry = null;
+  
   
   constructor(private filesService: FilesListService) {
     filesService.searchInFolders();
@@ -33,5 +33,13 @@ export class DisplayMenuComponent implements OnInit {
   selectEntry(entry: PathEntry){
     console.log("click" + entry.fileName);
     this.selectedEntry = entry;
+  }
+
+  get selectedEntry(): PathEntry{
+    return this.filesService.selectedEntry;
+  }
+
+  set selectedEntry(value: PathEntry){
+    this.filesService.selectedEntry = value;
   }
 }
