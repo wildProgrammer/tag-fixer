@@ -13,19 +13,6 @@ const routes: Routes = [
     {
         path: 'display',
         component: DisplayMenuComponent,
-        children: [
-            {
-                path: 'edit/:id',
-                component: TagEditComponent,
-                outlet: 'display'
-            },
-            {
-                path: 'suggest/:id',
-                component: SuggestionsComponent,
-                outlet: 'display'
-            }
-
-        ]
     }
     
     

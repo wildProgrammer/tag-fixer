@@ -38,6 +38,7 @@
         // max-width: 300px;
         color: #ffffff;
         font-weight: 500;
+        font-size: 2.2vh;
         list-style: none;
         margin-right: 2px;
         // background: rgba(255, 255, 255, 0.397);
@@ -45,7 +46,7 @@
         & li{
             padding: 0.3em;
             margin-bottom: 3px;
-            line-height: 50px;
+            // line-height: 50px;
             text-align: left;
             vertical-align:middle;
         }

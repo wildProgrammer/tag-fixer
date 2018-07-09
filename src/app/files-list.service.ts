@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { PathEntry } from './PathEntry'
-import { getFilesFromFolder } from './file-utility';
-require("./file-utility");
+import { searchMusic } from './file-utility';
 @Injectable({
   providedIn: 'root',
   useExisting : true
@@ -50,16 +49,17 @@ export class FilesListService {
 
   searchInFolders(){
     let pathSet: Set<String> = new Set();
+    this.entries = [];
     for(let entry of this.entries){
-      if(entry.isFile)
+      if(entry.isFile && !pathSet.has(entry.path)){
         pathSet.add(entry.path);
-      else
-        for(let innerFile of getFilesFromFolder(entry.path))
-          pathSet.add(innerFile);
+        this.entries.push(entry);
+      }
+      else{
+        searchMusic(entry.path, this.entries, pathSet);
+      }
     }
-    console.log(pathSet.values);
-    this.entries = Array.from(pathSet).map(el => new PathEntry(el, true));
-    console.log(this.entries);
+    
   }
 
   selectNextEntry(){
@@ -75,6 +75,11 @@ export class FilesListService {
     if(i > 0)
       this.selectedEntry = this.entries[i-1];
     else 
-      this.selectedEntry = this.entries[this.entries.length];
+      this.selectedEntry = this.entries[this.entries.length-1];
+  }
+
+  reset(): void{
+    this.removeAllEntries();
+    this.selectedEntry = null;
   }
 }

@@ -27,4 +27,8 @@ export class PathEntry{
         return this.initialTags !== this.tags;
     }
 
+    resetTags(){
+        this.tags = this.initialTags; 
+    }
+
 }

@@ -1,22 +1,20 @@
-<div class="container">
-    <div class="file-list">
-        <ul>
-            <li *ngFor="let entry of pathEntries" 
-                (click)="selectEntry(entry)"
-                [ngClass]="{'selected': entry === selectedEntry,
-                            'edited': entry.isEdited()}"
-            >
-               {{entry.fileName}}
-            </li>
-            <!-- <li>04 - A Step Back.mp3</li>
+<div class="file-list">
+    <ul>
+        <li *ngFor="let entry of pathEntries" (click)="selectEntry(entry)" 
+        [ngClass]="{'selected': entry === selectedEntry,
+                  'edited': entry.isEdited()}">
+            {{entry && entry.fileName.trim()}}
+        </li>
+        <!-- <li>04 - A Step Back.mp3</li>
             <li>04 - A Step Back.mp3</li>
             <li>04 - A Step Back.mp3</li>
             <li>04 - A Step Back allalalalalalalalal.mp3</li> -->
-        </ul>
-    </div>
+    </ul>
+</div>
+<div class="container">
     <div class="edit-window">
         <div class="path-title">
-            <h3>{{selectedEntry.path}}</h3>
+            {{selectedEntry && selectedEntry.path}}
         </div>
         <div *ngIf="selectedEntry && selectedEntry.isEdited()">
             <app-tag-edit [entry]="selectedEntry"></app-tag-edit>
@@ -26,10 +24,14 @@
         </div>
         <div class="footer">
             <ul>
-                <li *ngIf="selectedEntry.isEdited()">Back</li>
-                <li>Previous</li>
-                <li>Next</li>
-                <li>Save changes</li>
+                <li 
+                    [ngClass]="{'invisible-button': !selectedEntry.isEdited()}"
+                    (click)="toSuggestions()"
+                    >Back</li>
+                <li (click)="prevSong()">Previous</li>
+                <li (click)="nextSong()">Next</li>
+                <li (click)="saveChanges()">Save changes</li>
+                <li (click)="toMainMenu()">Cancel all</li>
             </ul>
         </div>
     </div>

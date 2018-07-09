@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FilesListService } from '../../files-list.service'
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ID3TagManager } from '../../ID3TagManager';
 import { PathEntry } from '../../PathEntry';
 
@@ -15,11 +15,15 @@ export class DisplayMenuComponent implements OnInit {
   
   
   
-  constructor(private filesService: FilesListService) {
+  constructor(private filesService: FilesListService,
+              private router: Router) {
     filesService.searchInFolders();
-    filesService.pathEntries.forEach(el => el.loadTags()) 
-
-    this.selectedEntry = this.pathEntries[0]; 
+    setTimeout(() => {
+      this.pathEntries.forEach(el => {
+        el.loadTags()
+      });
+      this.selectedEntry = this.pathEntries[0]
+    }, 0); 
   }
 
   ngOnInit() {
@@ -41,5 +45,23 @@ export class DisplayMenuComponent implements OnInit {
 
   set selectedEntry(value: PathEntry){
     this.filesService.selectedEntry = value;
+  }
+
+  prevSong(): void{
+    this.filesService.selectPreviousEntry();
+  }
+
+  nextSong(): void{
+    this.filesService.selectNextEntry();
+  }
+
+  toSuggestions(): void{
+    this.selectedEntry.resetTags();
+  }  
+
+  toMainMenu(): void{
+    this.filesService.removeAllEntries();
+    this.filesService.reset();
+    this.router.navigate(['../']);
   }
 }
