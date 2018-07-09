@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { PathEntry } from './PathEntry'
 import { searchMusic } from './file-utility';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
   useExisting : true
@@ -30,7 +31,10 @@ export class FilesListService {
     entry.inList = false;
   }
 
-  get pathEntries()  { return this.entries; }
+  get pathEntries()  { 
+    return this.entries;
+   }
+
 
   get length() { return this.entries.length; }
 
@@ -56,9 +60,16 @@ export class FilesListService {
         this.entries.push(entry);
       }
       else{
-        searchMusic(entry.path, this.entries, pathSet);
+        searchMusic(entry.path).subscribe(
+          path => {
+            if (!pathSet.has(path)) {
+              pathSet.add(path)
+              let entry = new PathEntry(path, true);
+              this.entries.push(entry);
+            }});
       }
     }
+    
     
   }
 
