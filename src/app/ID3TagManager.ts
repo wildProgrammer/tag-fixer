@@ -1,3 +1,5 @@
+import { spawn } from "child_process";
+
 const NodeID3 = require('node-id3')
 
 export interface ID3Tags {
@@ -7,7 +9,14 @@ export interface ID3Tags {
     description?: String,
     album?: String
 }
+const readline = require("readline");
 
+const child = spawn('node', ['./pseudo-threads/tags-reader-worker.js']);
+var reader = readline.createInterface({
+    input: child.stdout,
+    output: child.stdin,
+    terminal: false
+})
 
 export class ID3TagManager{
     
