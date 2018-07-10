@@ -6,6 +6,7 @@ export class PathEntry{
     initialTags: any = null;
     tags: any = null;
     tagManager: ID3TagManager = null;
+    tagsLoaded: boolean = false;
     get isFolder(){
         return !this.isFile;
     }
@@ -17,6 +18,8 @@ export class PathEntry{
             this.tagManager = new ID3TagManager(this.path);
         this.tags = this.tagManager.tags;
         this.initialTags = this.tags;
+        this.tagsLoaded = true;
+        console.log("load tags: " + this.path);
     }
 
     get fileName(){

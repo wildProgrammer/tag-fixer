@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Directive, ElementRef } from '@angular/core';
 import { PathEntry } from '../../PathEntry';
 import { FilesListService } from '../../files-list.service'
-import { getFilesFromFolder, hasValidExtension } from '../../file-utility'
+import { hasValidExtension } from '../../file-utility'
 const fs = require("fs");
 
 @Component({
@@ -53,7 +53,6 @@ export class HomeComponent implements OnInit {
   changeFolders(){
     this.addPaths(this.openDirectoryInput.nativeElement.files, false);
     console.log(this.pathsService.pathEntries)
-    console.log(getFilesFromFolder(this.openDirectoryInput.nativeElement.files[0].path))
     this.openDirectoryInput.nativeElement.value="";
   }
 

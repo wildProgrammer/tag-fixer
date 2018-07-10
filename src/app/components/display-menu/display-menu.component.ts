@@ -17,17 +17,16 @@ export class DisplayMenuComponent implements OnInit {
   
   constructor(private filesService: FilesListService,
               private router: Router) {
-    filesService.searchInFolders();
-    setTimeout(() => {
-      this.pathEntries.forEach(el => {
-        el.loadTags()
-      });
-      this.selectedEntry = this.pathEntries[0]
-    }, 0); 
+    
   }
 
   ngOnInit() {
-    
+    this.pathEntries.forEach(el => {
+      if(el.isFile)
+        el.loadTags()
+    })
+    this.filesService.searchInFolders();
+    console.log("after search in folders" + this.filesService.pathEntries)
   }
 
   get pathEntries(): PathEntry[]{

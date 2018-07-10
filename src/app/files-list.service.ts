@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { PathEntry } from './PathEntry'
 import { searchMusic } from './file-utility';
 import { Observable } from 'rxjs';
+import { NullTemplateVisitor } from '@angular/compiler';
 @Injectable({
   providedIn: 'root',
   useExisting : true
 })
 export class FilesListService {
-  private entries : PathEntry[] = [];
+  private entries: PathEntry[]=[];
+  public observableEntries: Observable<Array<PathEntry>>;
   selectedEntry: PathEntry = null;
   constructor() {
     console.log("entries=" + this.entries);
@@ -53,24 +55,29 @@ export class FilesListService {
 
   searchInFolders(){
     let pathSet: Set<String> = new Set();
-    this.entries = [];
+    console.log("after pathset")
+    var newEntries = [];
+    console.log("after newEntries[]" )
     for(let entry of this.entries){
       if(entry.isFile && !pathSet.has(entry.path)){
         pathSet.add(entry.path);
-        this.entries.push(entry);
+        newEntries.push(entry);
+        console.log(entry.path + " pushed in array")
       }
       else{
+        console.log("searching in folder")
         searchMusic(entry.path).subscribe(
           path => {
             if (!pathSet.has(path)) {
+              console.log("path: " + path)
               pathSet.add(path)
               let entry = new PathEntry(path, true);
-              this.entries.push(entry);
+              entry.loadTags();
+              newEntries.push(entry);
             }});
       }
     }
-    
-    
+    this.entries = newEntries;
   }
 
   selectNextEntry(){

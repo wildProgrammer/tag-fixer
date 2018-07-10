@@ -2,9 +2,11 @@
     <ul>
         <li *ngFor="let entry of pathEntries" (click)="selectEntry(entry)" 
         [ngClass]="{'selected': entry === selectedEntry,
-                  'edited': entry.isEdited()}">
+        'edited': entry && entry.isEdited(), 
+        'invisible-li': entry && !entry.tagsLoaded }"
+            >
             {{entry && entry.fileName.trim()}}
-        </li>
+        </li>  
         <!-- <li>04 - A Step Back.mp3</li>
             <li>04 - A Step Back.mp3</li>
             <li>04 - A Step Back.mp3</li>
@@ -25,7 +27,7 @@
         <div class="footer">
             <ul>
                 <li 
-                    [ngClass]="{'invisible-button': !selectedEntry.isEdited()}"
+                    [ngClass]="{'invisible-button': selectedEntry && !selectedEntry.isEdited()}"
                     (click)="toSuggestions()"
                     >Back</li>
                 <li (click)="prevSong()">Previous</li>
