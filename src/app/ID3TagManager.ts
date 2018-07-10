@@ -18,5 +18,9 @@ export class ID3TagManager{
         return tags;
     }
 
+    saveTags(modifiedTags: ID3Tags, filePath: String){
+        return NodeID3.write(modifiedTags, filePath);
+    }
+
     
 }

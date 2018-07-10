@@ -3,6 +3,7 @@ import { FilesListService } from '../../files-list.service'
 import { ActivatedRoute, Router } from '@angular/router';
 import { ID3TagManager } from '../../ID3TagManager';
 import { PathEntry } from '../../PathEntry';
+import { SaveState } from '../../save-state';
 
 
 @Component({
@@ -13,7 +14,9 @@ import { PathEntry } from '../../PathEntry';
 
 export class DisplayMenuComponent implements OnInit {
   
+  saving: boolean = false;
   
+  savingState: SaveState;
   
   constructor(private filesService: FilesListService,
               private router: Router) {
@@ -63,4 +66,29 @@ export class DisplayMenuComponent implements OnInit {
     this.filesService.reset();
     this.router.navigate(['../']);
   }
+
+  saveChanges(){
+    this.savingState = new SaveState();
+    this.saving = true;
+    this.filesService.pathEntries.forEach(el => {
+      if (el.isEdited()) {
+        this.savingState.toBeSaved.push(el);
+      }
+    })
+    this.savingState.toBeSaved.forEach((el) => {
+      setTimeout(()=>
+      {
+        this.savingState.currentlySaving = el.fileName;
+        if (el.save())
+          this.savingState.current++;
+          
+      } , 0);
+    })
+
+    setTimeout(()=>{
+      this.toMainMenu()
+    },
+    500);
+  }
+  
 }

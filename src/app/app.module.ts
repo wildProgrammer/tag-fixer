@@ -24,7 +24,8 @@ import { TagEditComponent } from './components/tag-edit/tag-edit.component';
 import { RouterModule, Router } from '@angular/router';
 import { FilesListService } from "./files-list.service";
 import { DisplayMenuComponent } from './components/display-menu/display-menu.component';
-import { SuggestionsComponent } from './components/suggestions/suggestions.component'
+import { SuggestionsComponent } from './components/suggestions/suggestions.component';
+import { SavingModalComponent } from './components/saving-modal/saving-modal.component'
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -38,7 +39,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     FileListPreviewComponent,
     TagEditComponent,
     DisplayMenuComponent,
-    SuggestionsComponent
+    SuggestionsComponent,
+    SavingModalComponent
   ],
   imports: [
     BrowserModule,

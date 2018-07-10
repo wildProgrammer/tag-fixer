@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
   constructor(private pathsService: FilesListService) { }
 
   ngOnInit() {
+    console.log=function(){};
   }
 
   openFile(){
@@ -56,7 +57,4 @@ export class HomeComponent implements OnInit {
     this.openDirectoryInput.nativeElement.value="";
   }
 
-  
-
-  
 }

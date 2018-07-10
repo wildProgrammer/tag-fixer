@@ -34,4 +34,9 @@ export class PathEntry{
         this.tags = this.initialTags; 
     }
 
+    save(): boolean{
+        return this.tagManager.saveTags(this.tags as ID3Tags, this.path);
+
+    }
+
 }
