@@ -12,7 +12,7 @@ export class ProcessPool {
     constructor(public count: number) {
         this.processes = [];
         for (let i = 0; i < count; i++) {
-            var proc = fork('.src/app/pseudo-threads/tags-reader-worker.js', [], options);
+            var proc = fork('src/app/pseudo-threads/tags-reader-worker.js', [], options);
             proc.on('close', function (code, signal) {
                 console.log('child process exited with ' +
                     `code ${code} and signal ${signal}`);

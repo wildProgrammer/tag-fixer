@@ -29,7 +29,7 @@ export class DisplayMenuComponent implements OnInit {
         el.loadTags()
     })
     this.filesService.searchInFolders();
-    console.log("after search in folders" + this.filesService.pathEntries)
+    // console.log("after search in folders" + this.filesService.pathEntries)
   }
 
   get pathEntries(): PathEntry[]{
@@ -72,7 +72,7 @@ export class DisplayMenuComponent implements OnInit {
     this.saving = true;
     this.filesService.pathEntries.forEach(el => {
       if (el.isEdited()) {
-        this.savingState.toBeSaved.push(el);
+        this.savingState.toBeSaved.unshift(el);
       }
     })
     this.savingState.toBeSaved.forEach((el) => {

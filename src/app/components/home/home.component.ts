@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     // console.log=function(){};
     console.log(__dirname);
-
+    console.log(process.cwd())
   }
 
   openFile(){
