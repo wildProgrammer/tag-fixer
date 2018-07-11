@@ -3,7 +3,7 @@ import { PathEntry } from '../../PathEntry';
 import { FilesListService } from '../../files-list.service'
 import { hasValidExtension } from '../../file-utility'
 const fs = require("fs");
-
+const app = require('electron').remote.app;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -25,7 +25,9 @@ export class HomeComponent implements OnInit {
   constructor(private pathsService: FilesListService) { }
 
   ngOnInit() {
-    console.log=function(){};
+    // console.log=function(){};
+    console.log(__dirname);
+
   }
 
   openFile(){

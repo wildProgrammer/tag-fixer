@@ -1,4 +1,6 @@
-import { spawn } from "child_process";
+import { ProcessPool } from "./process-pool";
+import { PathEntry } from "./PathEntry";
+
 
 const NodeID3 = require('node-id3')
 
@@ -9,27 +11,20 @@ export interface ID3Tags {
     description?: String,
     album?: String
 }
-const readline = require("readline");
 
-const child = spawn('node', ['./pseudo-threads/tags-reader-worker.js']);
-var reader = readline.createInterface({
-    input: child.stdout,
-    output: child.stdin,
-    terminal: false
-})
+const pool = new ProcessPool(3);
 
-export class ID3TagManager{
-    
-    constructor (public path: String) {}
+export class ID3TagManager {
 
-    get tags() : ID3Tags{
-        let tags = NodeID3.read(this.path);
-        return tags;
+    constructor(public path: String) { }
+
+    setTags(target: PathEntry) {
+        pool.loadTags(target);
     }
 
-    saveTags(modifiedTags: ID3Tags, filePath: String){
+    saveTags(modifiedTags: ID3Tags, filePath: String) {
         return NodeID3.write(modifiedTags, filePath);
     }
 
-    
+
 }

@@ -1,42 +1,52 @@
 import { ID3TagManager, ID3Tags } from "./ID3TagManager";
 const pathTools = require("path");
-export { ID3TagManager, ID3Tags }; 
-export class PathEntry{
-    inList : boolean = true;
-    initialTags: any = null;
+export { ID3TagManager, ID3Tags };
+export class PathEntry {
+    inList: boolean = true;
+    _initialTags: any = null;
     tags: any = null;
     tagManager: ID3TagManager = null;
     tagsLoaded: boolean = false;
-    get isFolder(){
+    get isFolder() {
         return !this.isFile;
     }
-    constructor(public path: String, public isFile: boolean) {}
+    constructor(public path: String, public isFile: boolean) { }
 
-    loadTags(): void{
+    loadTags(): void {
         if (this.initialTags != null) return;
-        if(this.tagManager === null)
+        if (this.tagManager === null)
             this.tagManager = new ID3TagManager(this.path);
-        this.tags = this.tagManager.tags;
-        this.initialTags = this.tags;
-        this.tagsLoaded = true;
-        console.log("load tags: " + this.path);
+        this.tagManager.setTags(this);
+
+
     }
 
-    get fileName(){
+    get fileName() {
         return pathTools.basename(this.path, '.mp3');
     }
 
-    isEdited(){
+    isEdited() {
         return this.initialTags !== this.tags;
     }
 
-    resetTags(){
-        this.tags = this.initialTags; 
-    }   
+    resetTags() {
+        this.tags = this.initialTags;
+    }
 
-    save(): boolean{
+    save(): boolean {
         return this.tagManager.saveTags(this.tags as ID3Tags, this.path);
 
+    }
+
+    set initialTags(val: any) {
+        this._initialTags = val;
+        this.tags = val;
+        this.tagsLoaded = true;
+        console.log("load tags: " + JSON.stringify(this.tags));
+    }
+
+    get initialTags() {
+        return this._initialTags;
     }
 
 }

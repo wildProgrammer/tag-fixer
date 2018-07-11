@@ -33,7 +33,7 @@ export class SuggestionsComponent implements OnInit {
   }
 
   reload(){
-    console.log("RELOAD SuggestionComponent")
+    // console.log("RELOAD SuggestionComponent")
     this.suggestions = [
       new KeepTagsSuggestion(this.entry),
       new FileNameSuggestion(this.entry),
