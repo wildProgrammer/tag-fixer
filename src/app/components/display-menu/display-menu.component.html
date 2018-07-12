@@ -29,11 +29,24 @@
                 <li 
                     [ngClass]="{'invisible-button': selectedEntry && !selectedEntry.isEdited()}"
                     (click)="toSuggestions()"
-                    >Back</li>
-                <li (click)="prevSong()">Previous</li>
-                <li (click)="nextSong()">Next</li>
-                <li (click)="saveChanges()">Save changes</li>
-                <li (click)="toMainMenu()">Cancel all</li>
+                    >
+                    <img src="../../../assets/images/curved-arrow.svg" class="reverse-icon" />
+                    Back
+                </li>
+                <li (click)="prevSong()" >
+                    <img src="../../../assets/images/circle_left.svg"/>
+                    Previous
+                </li>
+                <li (click)="nextSong()" >
+                    <img src="../../../assets/images/circle_right.svg" />
+                    Next
+                </li>
+                <li (click)="saveChanges()">
+                    <img src="../../../assets/images/save.svg"/>
+                    Save Changes
+                </li>
+                <li (click)="toMainMenu()"><img src="../../../assets/images/ban-solid.svg" />
+                    Cancel all</li>
             </ul>
         </div>
     </div>

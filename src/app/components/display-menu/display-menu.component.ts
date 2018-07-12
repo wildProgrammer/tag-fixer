@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FilesListService } from '../../files-list.service'
 import { ActivatedRoute, Router } from '@angular/router';
-import { ID3TagManager } from '../../ID3TagManager';
 import { PathEntry } from '../../PathEntry';
 import { SaveState } from '../../save-state';
+import { HostListener } from '@angular/core';
 
+const leftKey = 37,
+      upKey = 38,
+      rightKey = 39,
+      downKey = 40;
 
 @Component({
   selector: 'app-display-menu',
@@ -12,8 +16,21 @@ import { SaveState } from '../../save-state';
   styleUrls: ['./display-menu.component.scss']
 })
 
+
 export class DisplayMenuComponent implements OnInit {
   
+  @HostListener('document:keypress', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    console.log("keypressed " + event.key)
+    var code = event.key.charCodeAt(0)
+    if(code == leftKey || code == upKey ){
+      this.prevSong();
+    }
+    else if(code == rightKey || code == downKey ){
+      this.prevSong();
+    }
+  }
+
   saving: boolean = false;
   
   savingState: SaveState;

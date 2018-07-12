@@ -93,7 +93,7 @@ $edited: #32c3dd;
 .footer{
     position: fixed;
     width: 100%;
-    flex-basis: 100px;
+    // flex-basis: 80px;
     bottom:0;
     // height: 100px;
     display: flex;
@@ -107,20 +107,27 @@ $edited: #32c3dd;
         li{
             margin-right: 0.5em;
             list-style: none;
-            padding:1.5vw;
+            padding:1vw;
             color: $dark-brown;
             font-weight: bold;
-            // font-size: 2.2vw;
-            border: 3px $dark-brown solid;
+            font-size: 1.8vw;
+            // border: 3px $dark-brown solid;
             border-radius: 5px;
             cursor: pointer;
             background: rgba($color: #ffffff, $alpha: 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             transition: border-color 0.25s color 0.25s background-color 0.25s;
+            img{
+                width: 5vw;
+                height: 5vw;;
+            }
         }
         li:hover{
-            color: rgba($color: #ffffff, $alpha: 0.3);
-            background:$dark-brown;
-            border-color: rgba($color: #ffffff, $alpha: 0.3);
+            // color: rgba($color: #ffffff, $alpha: 0.3);
+            background:$bright-green;
+
         }
     }
 }
@@ -137,4 +144,8 @@ $edited: #32c3dd;
 
 .invisible-li{
     display: none;
+}
+
+.reverse-icon{
+    transform: scaleX(-1);
 }

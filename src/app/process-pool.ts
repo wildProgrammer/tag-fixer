@@ -44,8 +44,10 @@ export class ProcessPool {
     private managePool() {
 
         if (this.queue.length == 0) {
-            setTimeout(() => clearInterval(this.watcherToken), 100);
-            this.watcherToken = null;
+            if(this.processes.every(proc => proc.task === null)){
+                clearInterval(this.watcherToken)
+                this.watcherToken = null;
+            }
             return;
         }
         var freeProcess = this.processes.find(val => val.task === null);
