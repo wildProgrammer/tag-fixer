@@ -37,6 +37,7 @@
     "e2e": "npm run postinstall:web && ng e2e"
   },
   "dependencies": {
+    "@angular/animations": "^6.0.9",
     "component": "^1.1.0",
     "node-id3": "^0.1.5"
   },

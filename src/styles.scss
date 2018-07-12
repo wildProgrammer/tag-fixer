@@ -7,4 +7,6 @@ html, body {
   padding: 0;
   background: $dark-brown;
   height: 100%;
+  user-select: none;
+  cursor: default;
 }

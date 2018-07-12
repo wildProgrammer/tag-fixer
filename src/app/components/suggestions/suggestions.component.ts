@@ -7,6 +7,15 @@ import { Suggestion
          ,FileNameSuggestion
          ,ReverseFileNameSuggestion
         } from '../../Suggestion-kinds/Suggestion';
+import { TextFilter, RemoveCharFilter, ClearTextBetweenCharsFilter } from '../../Suggestion-kinds/SuggestionFilters';
+
+interface FilterDescriptor {
+  obj: TextFilter;
+  name: String;
+  description: String;
+  enabled: boolean;
+}
+
 @Component({
   selector: 'app-suggestions',
   templateUrl: './suggestions.component.html',
@@ -16,6 +25,22 @@ export class SuggestionsComponent implements OnInit {
   position: number;
   
   suggestions: Suggestion[];
+
+  filters: FilterDescriptor[] = 
+    [
+      {
+        obj: new ClearTextBetweenCharsFilter("(", ")"),
+        name: "del-parantheses",
+        description: "Delete text between parantheses",
+        enabled: false
+      },
+      {
+        obj: new ClearTextBetweenCharsFilter("[", "]"),
+        name: "del-square-brackets",
+        description: "Delete text between square brackets",
+        enabled: false
+      }
+    ] 
 
   @Input()
   set song(entry: PathEntry){
@@ -45,5 +70,14 @@ export class SuggestionsComponent implements OnInit {
     this.entry.tags = suggestion.tags;
   }
   
+  triggerChange(filter: FilterDescriptor){
+    console.log("triggerChange")
+    for(let suggest of this.suggestions){
+      if(filter.enabled)
+        suggest.useFilter(filter.obj)
+      else
+        suggest.removeFilter(filter.obj);
+    }
+  }
 
 }

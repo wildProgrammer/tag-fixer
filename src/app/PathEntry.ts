@@ -49,4 +49,8 @@ export class PathEntry {
         return this._initialTags;
     }
 
+    getTag(name: String){
+        return this.tags[name as string];
+    }
+
 }

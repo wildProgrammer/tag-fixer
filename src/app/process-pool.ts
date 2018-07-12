@@ -27,7 +27,7 @@ export class ProcessPool {
     }
 
     private readLineEvent(position: number, data: string) {
-        console.error("received data: " + data)
+        // console.error("received data: " + data)
         this.processes[position].task.initialTags = data;
         this.processes[position].task = null;
     }

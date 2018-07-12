@@ -6,11 +6,11 @@ $edited: #32c3dd;
     top: 25%;
     left: 40%;
     transform: translate(-12.5vh, 12.5vh);
-    font-size: 2vh;
+    font-size: 2vmin;
     margin: 0 auto;
     position: fixed;
     color: rgb(199, 199, 199);
-    font-size: 3vh;
+    font-size: 3vmin;
     font-weight: bold;
     border: white solid 4px;
     border-radius: 5px;
@@ -18,18 +18,18 @@ $edited: #32c3dd;
     display: flex;
     flex-direction: column;
     text-align: center;
-    width: 35vh;
+    width: 35min;
 
     padding: 2em;
     .current{
         font-weight: 500;
-        size: 1.5vh;
+        size: 1.5vmin;
     }
     .spinner{
         margin-left: auto;
         margin-right: auto;
-        width: 25vh;
-        height: 25vh;
+        width: 25vmin;
+        height: 25vmin;
     }
     background: rgb(36, 36, 36);
 }
