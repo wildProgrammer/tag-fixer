@@ -41,7 +41,7 @@ export class DisplayMenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.pathEntries.forEach(el => {
+    this.pathEntries.reverse().forEach(el => {
       if(el.isFile)
         el.loadTags()
     })

@@ -16,8 +16,8 @@ $bright-brown: #382828;
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding-bottom: 13.7vh;
     }
-    // padding: 100px;
     color: white;
     overflow: hidden;
     li{
@@ -31,7 +31,7 @@ $bright-brown: #382828;
             border: 3px solid $bright-green;
             border-radius: 6px;
             transition: 0.3s box-shadow 0.3s border-color;
-            padding: 10px;
+            padding: 0.2em;
             margin-bottom: 1em;
             cursor: pointer;
         }
@@ -57,7 +57,7 @@ $bright-brown: #382828;
 .filters-container{
     li{
         list-style: none;
-        font-size: 20px;    
+        font-size: 2.3vw;    
         color: wheat;
         font-weight: 600;
         margin-bottom: 10px;

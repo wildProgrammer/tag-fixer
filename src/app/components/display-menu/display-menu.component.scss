@@ -23,7 +23,7 @@ $edited: #32c3dd;
     & ul{
         margin-top: 40px;
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
         left:0;
         white-space: nowrap;
         align-items: center;
@@ -33,7 +33,7 @@ $edited: #32c3dd;
         
         & li{
             padding:0;
-            border-left: solid transparent 4px;
+            // border-left: solid transparent 4px;
             border-right: solid transparent 4px;
             // text-align: center;
             white-space: nowrap;

@@ -58,7 +58,9 @@ export class FilesListService {
     console.log("after pathset")
     var newEntries = [];
     console.log("after newEntries[]" )
-    for(let entry of this.entries){
+    // for(let entry of this.entries){
+    for(let i=this.entries.length-1; i>=0; i--){
+      let entry = this.entries[i];
       if(entry.isFile && !pathSet.has(entry.path)){
         pathSet.add(entry.path);
         newEntries.push(entry);

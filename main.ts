@@ -57,35 +57,35 @@ try {
       app.quit();
     }
   });
-
+  /*
   app.on('activate', () => {
     // On OS X it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
     if (win === null) {
       createWindow();
-      const remote = require('remote')
-      const Menu = remote.require('menu')
-      const MenuItem = remote.require('menu-item')
+      // const remote = require('remote')
+      // const Menu = remote.require('menu')
+      // const MenuItem = remote.require('menu-item')
 
-      let rightClickPosition = null
+      // let rightClickPosition = null
 
-      const menu = new Menu()
-      const menuItem = new MenuItem({
-        label: 'Inspect Element',
-        click: () => {
-          remote.getCurrentWindow().inspectElement(rightClickPosition.x, rightClickPosition.y)
-        }
-      })
-      menu.append(menuItem)
+      // const menu = new Menu()
+      // const menuItem = new MenuItem({
+      //   label: 'Inspect Element',
+      //   click: () => {
+      //     remote.getCurrentWindow().inspectElement(rightClickPosition.x, rightClickPosition.y)
+      //   }
+      // })
+      // menu.append(menuItem)
 
-      window.addEventListener('contextmenu', (e) => {
-        e.preventDefault()
-        rightClickPosition = { x: e.x, y: e.y }
-        menu.popup(remote.getCurrentWindow())
-      }, false)
+      // window.addEventListener('contextmenu', (e) => {
+      //   e.preventDefault()
+      //   rightClickPosition = { x: e.x, y: e.y }
+      //   menu.popup(remote.getCurrentWindow())
+      // }, false)
     }
   });
-
+*/
 } catch (e) {
   // Catch Error
   // throw e;

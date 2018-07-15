@@ -4,6 +4,7 @@
         [ngClass]="{'selected': entry === selectedEntry,
         'edited': entry && entry.isEdited(), 
         'invisible-li': entry && !entry.tagsLoaded }"
+        [title]="entry && entry.fileName"
             >
             {{entry && entry.fileName.trim()}}
         </li>  
