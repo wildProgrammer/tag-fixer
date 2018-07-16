@@ -23,9 +23,10 @@ $bright-brown: #382828;
     li{
         list-style: none;
         .li-content{
-            font-size: 2vw;
+            font-size: 2.8vmin;
             width: 40vw;
-            height: 15vh;
+            // height: 15vh;
+            min-height: 100px;
             background: $bright-brown;
             
             border: 3px solid $bright-green;
@@ -41,9 +42,7 @@ $bright-brown: #382828;
             border-color: $edited;
         }
 
-        td{
-            text-align: left;
-        }
+
     }
     .suggest-header{
         color: gray;
@@ -70,3 +69,15 @@ $bright-brown: #382828;
 
 
 }
+
+@media screen and (max-width: 600px) , screen and (max-height: 620px) {
+    .suggestion-container li .li-content{  
+         font-size: 15px;
+    }
+}
+// @media (max-width: 508px){
+//      li .li-content{  
+//          font-size: 8px
+//     }
+// }
+

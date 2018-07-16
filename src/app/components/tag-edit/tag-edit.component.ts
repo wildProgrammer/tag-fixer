@@ -39,4 +39,8 @@ export class TagEditComponent implements OnInit {
     return this._tagNames;
   }
 
+  removeTag(tagName: string){
+    delete this.tags[tagName];
+    this.tagNames.splice(this.tagNames.indexOf(tagName), 1);
+  }
 }

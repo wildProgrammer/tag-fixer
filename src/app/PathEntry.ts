@@ -1,16 +1,20 @@
 import { ID3TagManager, ID3Tags } from "./ID3TagManager";
 const pathTools = require("path");
 export { ID3TagManager, ID3Tags };
+var fileUrl = require('file-url');
 export class PathEntry {
     inList: boolean = true;
     _initialTags: any = null;
     tags: any = null;
+    private dataUrl: string = null;
     tagManager: ID3TagManager = null;
     tagsLoaded: boolean = false;
     get isFolder() {
         return !this.isFile;
     }
-    constructor(public path: String, public isFile: boolean) { }
+    constructor(public path: String, public isFile: boolean) {
+
+    }
 
     loadTags(): void {
         if (this.initialTags != null) return;
@@ -19,6 +23,13 @@ export class PathEntry {
         this.tagManager.setTags(this);
 
 
+    }
+
+    get url(){
+        if(this.dataUrl === null){
+            this.dataUrl = fileUrl(this.path)
+        }
+        return this.dataUrl;
     }
 
     get fileName() {

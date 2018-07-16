@@ -1,15 +1,16 @@
 <div class="title">Tags</div>
 <ul>
     <li *ngFor="let tagName of tagNames">
-        <table>
+        <table >
             <tr>
                 <td>
+                    <img class="del_butt" src="../../../assets/images/delete_icon.png" (click)="removeTag(tagName)">
                     <label [for]="tagName">
                         {{tagName}}:
                     </label>
                 </td>
                 <td>
-                    <input [name]="tagName" [(ngModel)]="tags[tagName]"/>
+                    <input [name]="tagName" [id]="tagName" [(ngModel)]="tags[tagName]"/>
                 </td>
             </tr>
         </table>

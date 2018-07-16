@@ -39,6 +39,7 @@
   "dependencies": {
     "@angular/animations": "^6.0.9",
     "component": "^1.1.0",
+    "file-url": "^2.0.2",
     "node-id3": "^0.1.5"
   },
   "devDependencies": {

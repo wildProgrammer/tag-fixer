@@ -28,8 +28,10 @@ export class ProcessPool {
 
     private readLineEvent(position: number, data: string) {
         // console.error("received data: " + data)
-        this.processes[position].task.initialTags = data;
-        this.processes[position].task = null;
+        if(this.processes[position].task !== null){
+            this.processes[position].task.initialTags = data;
+            this.processes[position].task = null;
+        }
     }
 
     loadTags(target: PathEntry) {
