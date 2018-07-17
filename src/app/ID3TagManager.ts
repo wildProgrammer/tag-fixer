@@ -9,7 +9,18 @@ export interface ID3Tags {
     artist?: String,
     image?: any,
     description?: String,
-    album?: String
+    album?: String,
+    genre?: String,
+    year?: number,
+    trackNumber?: number;
+    unsynchronisedLyrics?: {
+        language?: String,
+        text: String
+    };
+    composer?: String;
+    time?: String;
+    date?: String;
+    publisher?: String
 }
 
 const pool = new ProcessPool(3);

@@ -1,16 +1,31 @@
-<div class="title">Tags</div>
+<div class="title">
+    Tags
+    <img class="add_butt" src="../../../assets/images/plus-square-regular-green.svg">
+
+</div> 
 <ul>
-    <li *ngFor="let tagName of tagNames">
+    <li *ngFor="let tagAlias of tagNamesTypes">
         <table >
             <tr>
-                <td>
-                    <img class="del_butt" src="../../../assets/images/delete_icon.png" (click)="removeTag(tagName)">
-                    <label [for]="tagName">
-                        {{tagName}}:
+                <td class="line">
+                    <img 
+                    class="del_butt" 
+                    src="../../../assets/images/delete_icon.png"
+                     (click)="removeTag(tagAlias.name)">
+                    <label [for]="tagAlias.name">
+                        {{tagAlias.name | upperfirst}}
                     </label>
                 </td>
                 <td>
-                    <input [name]="tagName" [id]="tagName" [(ngModel)]="tags[tagName]"/>
+                    <input
+                    *ngIf="tagAlias.type === 'string'"  
+                    [name]="tagAlias.name" 
+                    [id]="tagAlias.name" 
+                    [(ngModel)]="tags[tagAlias.name]"/>
+                    
+                    <div *ngIf="tagAlias.type === 'image'">
+                        <img [src]="image"/>
+                    </div>
                 </td>
             </tr>
         </table>

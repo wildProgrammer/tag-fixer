@@ -43,7 +43,7 @@ export class DisplayMenuComponent implements OnInit {
   ngOnInit() {
     
     var defaultSelector = setInterval(()=>{
-      if(this.pathEntries.length>0){
+      if(this.pathEntries.length>0 && this.pathEntries[0].tagsLoaded){
         this.selectedEntry = this.pathEntries[0];
         clearInterval(defaultSelector);
       }
