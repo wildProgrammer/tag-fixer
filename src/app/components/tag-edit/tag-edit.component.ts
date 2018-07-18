@@ -41,9 +41,11 @@ export class TagEditComponent implements OnInit, OnDestroy{
   }
   
   constructor(private filesService: FilesListService) {
-   }  
+  }  
 
   ngOnInit() {
+    this._tagNamesWithTypes = null;
+    this._availableTags = supportedAliasesNames.slice(0);
   }
 
   get tagNamesTypes(): any[]{
@@ -83,7 +85,7 @@ export class TagEditComponent implements OnInit, OnDestroy{
 
   get image(){
     //TODO: var data = getMyvalue(this, ["tags", "image", "imageBuffer", "data"])
-    if(this.selectedImage !== null){
+    if(this.selectedImage){
       return "file://" + this.selectedImage.path
     }
     else if(this.decodedImg === null)
@@ -144,6 +146,6 @@ export class TagEditComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(){
-    this.selectedImage = null;
+    // this.selectedImage = null;
   }
 }

@@ -6,7 +6,7 @@
     <select id="tag-options" ([ngModel])="newTagName">
         <option 
         *ngFor="let tagName of availableTags"
-         ng-selected="newTagName == tagName"
+        ng-selected="newTagName == tagName"
         [value]="tagName" >
         {{tagName | upperfirst}}
         </option>
