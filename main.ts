@@ -16,7 +16,8 @@ function createWindow() {
     x: 0,
     y: 0,
     width: 1300,
-    height: 800
+    height: 800,
+    webPreferences: {webSecurity: false}
   });
 
   if (serve) {

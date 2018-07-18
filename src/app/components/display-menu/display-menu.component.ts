@@ -21,7 +21,7 @@ export class DisplayMenuComponent implements OnInit {
   
   @HostListener('document:keypress', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
-    console.log("keypressed " + event.key)
+    console.log("keypressed " + event.key.charCodeAt(0))
     var code = event.key.charCodeAt(0)
     if(code == leftKey || code == upKey ){
       this.prevSong();

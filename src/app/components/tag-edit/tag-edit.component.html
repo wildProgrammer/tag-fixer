@@ -1,7 +1,16 @@
 <div class="title">
     Tags
-    <img class="add_butt" src="../../../assets/images/plus-square-regular-green.svg">
-
+    <img class="add_butt"
+         src="../../../assets/images/plus-square-regular-green.svg"
+         (click)="addTag()">
+    <select id="tag-options" ([ngModel])="newTagName">
+        <option 
+        *ngFor="let tagName of availableTags"
+         ng-selected="newTagName == tagName"
+        [value]="tagName" >
+        {{tagName | upperfirst}}
+        </option>
+    </select>
 </div> 
 <ul>
     <li *ngFor="let tagAlias of tagNamesTypes">
@@ -24,7 +33,20 @@
                     [(ngModel)]="tags[tagAlias.name]"/>
                     
                     <div *ngIf="tagAlias.type === 'image'">
-                        <img [src]="image"/>
+                        <label for="image-picker">
+                            <img 
+                             id="image-tag" 
+                             [src]="image"
+                             alt="no-img"/>
+                            Pick image
+                        </label>
+                        <input id="image-picker"
+                               name="image-picker"
+                               type="file"  
+                               hidden
+                               accept=".gif,.jpg,.jpeg,.png"
+                               (change)="changeImage($event)"
+                               >
                     </div>
                 </td>
             </tr>

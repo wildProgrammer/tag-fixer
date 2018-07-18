@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { FilesListService } from '../../files-list.service'
 import { ActivatedRoute } from '@angular/router';
 import { ID3TagManager } from '../../ID3TagManager';
@@ -8,20 +8,38 @@ import { ValueTransformer } from '@angular/compiler/src/util';
 import {getAlias, TagAlias} from '../../supported-aliases'
 import { UpperfirstPipe } from '../../pipes/upperfirst.pipe'
 import { jsonpCallbackContext } from '@angular/common/http/src/module';
+import { readFile, readFileSync } from 'fs';
+import {supportedAliases, supportedAliasesNames} from "../../supported-aliases"
 @Component({
   selector: 'app-tag-edit',
   templateUrl: './tag-edit.component.html',
   styleUrls: ['./tag-edit.component.scss']
 })
-export class TagEditComponent implements OnInit {
+export class TagEditComponent implements OnInit, OnDestroy{
+
+  @ViewChild("tagoptions")
+  tagOptions: ElementRef
 
   @Input()
   entry: PathEntry;
+
   private _tagNamesWithTypes: TagAlias[] = null;
 
+  private _availableTags:String[] = supportedAliasesNames.slice(0);
+  
+  selectedImage: {
+    path: string,
+    mimeType: string
+  } = null;
+  
+  decodedImg = null;
+  
+  newTagName: string;
+  
   get tags(): ID3Tags{
     return this.entry.tags
   }
+  
   constructor(private filesService: FilesListService) {
    }  
 
@@ -36,48 +54,96 @@ export class TagEditComponent implements OnInit {
         return el !="raw" && el != "comment"
       })
     
-      var namesWithTypes = names.map(getAlias);
+      var namesWithTypes = names.map(getAlias)
+                                .sort((a, b)=> Number(a.name > b.name));
       this._tagNamesWithTypes = namesWithTypes;
+
+      this.removeOptionsThatArePresent();
+
     }
     return this._tagNamesWithTypes;
+  }
+
+  private removeOptionsThatArePresent(){
+    this._tagNamesWithTypes.forEach(el => {
+      var index = this._availableTags.indexOf(el.name);
+      if (index != -1)
+        this._availableTags.splice(index, 1);
+    })
   }
 
   removeTag(tagName: string){
     delete this.tags[tagName];
     var pos = this._tagNamesWithTypes.findIndex(val => val.name == tagName);
-    if(pos !== -1)
-      this._tagNamesWithTypes.splice(pos, 1);
+    if(pos !== -1){
+      this._availableTags.push(this._tagNamesWithTypes[pos].name);
+      this._tagNamesWithTypes.splice(pos, 1)
+    }
   }
 
   get image(){
     //TODO: var data = getMyvalue(this, ["tags", "image", "imageBuffer", "data"])
-    return this.decode(this.tags.image.imageBuffer);
+    if(this.selectedImage !== null){
+      return "file://" + this.selectedImage.path
+    }
+    else if(this.decodedImg === null)
+      this.decodedImg = this.decode(this.tags.image);
+    return this.decodedImg;
   }
 
-  decode(imgBuffer) {
-    var mime = imgBuffer.mime;
+  decode(img) {
+    let imgBuffer = img.imageBuffer
+    var mime = img.mime;
     var a = new Uint8Array(imgBuffer.data);
     var nb = a.length;
     if (nb < 4)
       return null;
-    // var b0 = a[0];
-    // var b1 = a[1];
-    // var b2 = a[2];
-    // var b3 = a[3];
-    // if (b0 == 0x89 && b1 == 0x50 && b2 == 0x4E && b3 == 0x47)
-    //   mime = 'image/png';
-    // else if (b0 == 0xff && b1 == 0xd8)
-    //   mime = 'image/jpeg';
-    // else if (b0 == 0x47 && b1 == 0x49 && b2 == 0x46)
-    //   mime = 'image/gif';
-    // else
-    //   return null;
     var binary = "";
-    for (var i = 0; i < nb; i++)
-      binary += String.fromCharCode(a[i]);
-    var base64 = window.btoa(binary);
-    var image = new Image();
-    image.src = 'data:' + mime + ';base64,' + base64;
-    return image;
+      for(var i=0; i< a.length; i++){
+        binary += String.fromCharCode(a[i]);
+    }
+    var base64 = window.btoa(binary)
+    // console.log(mime)
+    // console.log(imgBuffer.data.length)
+    return `data:image/${mime};base64,${base64}`; 
+  }
+
+  changeImage(event){
+    if(event.srcElement.files.length===0) return;
+    var img = event.srcElement.files[0];
+    console.log(img.path);
+    this.selectedImage = {
+      path: img.path,
+      mimeType: img.type
+    }
+    this.tags.image.mime = this.selectedImage.mimeType;
+    this.tags.image.imageBuffer = readFileSync(this.selectedImage.path)
+  }
+
+  showTagOptions(){
+    console.log(this.tagOptions.nativeElement);
+    this.showDropdown(this.tagOptions.nativeElement)
+  }
+  
+  showDropdown(element) {
+    var event;
+    event = document.createEvent('MouseEvents');
+    event.initMouseEvent('mousedown', true, true, window);
+    var worked = element.dispatchEvent(event);
+    console.log("show tag options!")
+  };
+
+  addTag(){
+    var alias = getAlias(this.newTagName);
+    console.log("add tag" + this.newTagName)
+    this._tagNamesWithTypes.push(alias);
+  }
+
+  get availableTags(){
+    return this._availableTags;
+  }
+
+  ngOnDestroy(){
+    this.selectedImage = null;
   }
 }

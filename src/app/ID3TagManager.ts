@@ -7,14 +7,22 @@ const NodeID3 = require('node-id3')
 export interface ID3Tags {
     title?: String,
     artist?: String,
-    image?: any,
+    image?: {
+        mime: String,
+        type: {
+            id: number,
+            name: string
+        },
+        description?: String,
+        imageBuffer: Buffer
+    },
     description?: String,
     album?: String,
     genre?: String,
     year?: number,
     trackNumber?: number;
     unsynchronisedLyrics?: {
-        language?: String,
+        language: String,
         text: String
     };
     composer?: String;

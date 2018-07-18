@@ -9,6 +9,9 @@ $bright-brown: #382828;
     font-size: 30px;
     font-weight: bold;
     color: white;
+    display: flex;
+    flex-direction: row;
+    justify-items: flex-start
 }
 
 li{
@@ -52,10 +55,27 @@ input{
 
 .add_butt{
     cursor: pointer;
-    height: 15px;
-    width: 15px;
-    background: url("../../../assets/images/plus-square-regular.svg");
+    height: 1em;
+    width: 1em;
+    padding-top: 5px;   
+    margin-left: 10px;
 }
 svg{
     fill: $bright-green;
+}
+
+#image-tag{
+    width:200px;
+    height:200px;
+}
+
+#tag-options {
+    font-size: 17px;
+    background: rgb(201, 201, 201);
+    color: $moderate-green;
+}
+
+#tag-options option{
+    background: inherit;
+    color: inherit;
 }

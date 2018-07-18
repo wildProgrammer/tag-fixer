@@ -66,7 +66,8 @@ export const supportedAliases : TagAlias[] = [
     {
         name: "publisher",
         type: "string"
-    }
-    
-    
+    }   
 ]
+
+export const supportedAliasesNames =
+             supportedAliases.map(el => el.name).sort();

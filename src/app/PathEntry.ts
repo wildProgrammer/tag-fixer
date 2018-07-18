@@ -54,7 +54,7 @@ export class PathEntry {
         this._initialTags = val;
         this.tags = val;
         this.tagsLoaded = true;
-        console.log("load tags: " + JSON.stringify(this.tags));
+        // console.log("load tags: " + JSON.stringify(this.tags));
     }
 
     get initialTags() {
