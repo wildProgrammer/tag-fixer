@@ -8,11 +8,11 @@
     <ul>
         <li *ngFor="let entry of pathEntries" (click)="selectEntry(entry)" 
         [ngClass]="{'selected': entry === selectedEntry,
-        'edited': entry && entry.isEdited(), 
-        'invisible-li': entry && !entry.tagsLoaded }"
-        [title]="entry && entry.fileName"
+        'edited': entry?.tagState.isEdited(), 
+        'invisible-li': !entry?.tagState?.tagsLoaded }"
+        [title]="entry?.file.fileName"
             >
-            {{entry && entry.fileName.trim()}}
+            {{entry?.file.fileName.trim()}}
         </li>  
         <!-- <li>04 - A Step Back.mp3</li>
             <li>04 - A Step Back.mp3</li>
@@ -23,18 +23,18 @@
 <div class="container">
     <div class="edit-window">
         <div class="path-title">
-            {{selectedEntry && selectedEntry.path}}
+            {{ selectedEntry?.file.path}}
         </div>
-        <div *ngIf="selectedEntry && selectedEntry.isEdited()">
+        <div *ngIf="selectedEntry?.tagState.isEdited()">
             <app-tag-edit [entry]="selectedEntry"></app-tag-edit>
         </div>
-        <div *ngIf="selectedEntry && !selectedEntry.isEdited()">
+        <div *ngIf="!selectedEntry?.tagState.isEdited()">
             <app-suggestions [song]="selectedEntry"></app-suggestions>
         </div>
         <div class="footer">
             <ul>
                 <li 
-                    [ngClass]="{'invisible-button': selectedEntry && !selectedEntry.isEdited()}"
+                    [ngClass]="{'invisible-button': selectedEntry && !selectedEntry.tagState.isEdited()}"
                     (click)="toSuggestions()"
                     >
                     <img src="../../../assets/images/curved-arrow.svg" class="reverse-icon" />

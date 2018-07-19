@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FilesListService } from '../../files-list.service';
-import { PathEntry } from '../../PathEntry';
+import { PathEntry } from '../song-modules/PathEntry';
 import { SaveState } from '../../save-state';
 
 @Component({

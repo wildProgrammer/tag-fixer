@@ -1,4 +1,4 @@
-import { PathEntry } from "./PathEntry";
+import { PathEntry } from "./components/song-modules/PathEntry";
 
 const fs = require("fs");
 const paths = require("path");

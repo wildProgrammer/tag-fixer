@@ -1,36 +1,39 @@
 import { Injectable } from '@angular/core';
-import { PathEntry } from './PathEntry'
+import { PathEntry } from './components/song-modules/PathEntry'
 import { searchMusic } from './file-utility';
 import { Observable } from 'rxjs';
 import { NullTemplateVisitor } from '@angular/compiler';
+import { InterfaceEntry } from './components/song-modules/interface-entry';
 @Injectable({
   providedIn: 'root',
   useExisting : true
 })
 export class FilesListService {
-  private entries: PathEntry[]=[];
+  private entries: InterfaceEntry[]=[];
   public observableEntries: Observable<Array<PathEntry>>;
-  selectedEntry: PathEntry = null;
+  selectedEntry: InterfaceEntry = null;
   constructor() {
     console.log("entries=" + this.entries);
     console.log("constructor of service")
    }
+
   addEntry(entry : PathEntry){
-    if(this.entries.findIndex(el=>el.path===entry.path) === -1){
-      this.entries.push(entry);
-      entry.inList = true;
+    if(this.entries.findIndex(el=>el.file.path===entry.path) === -1){
+      var interfaceEntry = new InterfaceEntry(entry);
+      this.entries.push(interfaceEntry);
+      interfaceEntry.listState.inList = true;
     }
     console.log(this.entries);
   }
 
-  removeEntry(entry : PathEntry){
-    if(!entry.inList) return;
+  removeEntry(entry : InterfaceEntry){
+    // if(!entry.inList) return;
     let pos = this.entries.findIndex(el => el == entry);
     if(pos != -1){
       this.entries[pos] = this.entries[this.entries.length-1];
       this.entries.pop();
     }
-    entry.inList = false;
+    // entry.inList = false;
   }
 
   get pathEntries()  { 
@@ -45,36 +48,36 @@ export class FilesListService {
     this.entries = [];
     console.log("done deleting")
     for(let e of this.entries){
-      e.inList=false;
+      e.listState.inList=false;
     }
   }
 
-  getByIndex(index: number): PathEntry{
+  getByIndex(index: number): InterfaceEntry{
     return this.entries[index];
   }
 
   searchInFolders(){
     let pathSet: Set<String> = new Set();
-    console.log("after pathset")
-    var newEntries = [];
-    console.log("after newEntries[]" )
+    // console.log("after pathset")
+    var newEntries:InterfaceEntry[] = [];
+    // console.log("after newEntries[]" )
     // for(let entry of this.entries){
     for(let i=this.entries.length-1; i>=0; i--){
       let entry = this.entries[i];
-      if(entry.isFile && !pathSet.has(entry.path)){
-        pathSet.add(entry.path);
+      if(entry.file.isFile && !pathSet.has(entry.file.path)){
+        pathSet.add(entry.file.path);
         newEntries.push(entry);
-        console.log(entry.path + " pushed in array")
+        // console.log(entry.file.path + " pushed in array")
       }
       else{
-        console.log("searching in folder")
-        searchMusic(entry.path).subscribe(
+        // console.log("searching in folder")
+        searchMusic(entry.file.path).subscribe(
           path => {
             if (!pathSet.has(path)) {
-              console.log("path: " + path)
+              // console.log("path: " + path)
               pathSet.add(path)
-              let entry = new PathEntry(path, true);
-              entry.loadTags();
+              let entry = new InterfaceEntry(new PathEntry(path, true));
+              entry.tagState.loadTags();
               newEntries.push(entry);
             }});
       }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FilesListService } from '../../files-list.service'
-import { PathEntry } from '../../PathEntry'
+import { PathEntry } from '../song-modules/PathEntry'
+import { InterfaceEntry } from '../song-modules/interface-entry';
 
 @Component({
   selector: 'app-file-list-preview',
@@ -13,10 +14,9 @@ export class FileListPreviewComponent implements OnInit {
 
   get pathEntries () { return this.pathsService.pathEntries; }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  deleteEntry(entry: PathEntry){
+  deleteEntry(entry: InterfaceEntry){
     this.pathsService.removeEntry(entry);
   }
 

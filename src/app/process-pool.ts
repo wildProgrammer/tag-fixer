@@ -1,13 +1,14 @@
 import { fork } from "child_process";
-import { PathEntry } from "./PathEntry";
+import { PathEntry } from "./components/song-modules/PathEntry";
+import { TagState } from "./components/song-modules/TagState";
 const options = {
     stdio: ['pipe', 'pipe', 'pipe', 'ipc']
 }
 
 
 export class ProcessPool {
-    processes: { proc: any, task: PathEntry }[];
-    queue: PathEntry[] = [];
+    processes: { proc: any, task: TagState }[];
+    queue: TagState[] = [];
     watcherToken: any = null;
     constructor(public count: number) {
         this.processes = [];
@@ -34,7 +35,7 @@ export class ProcessPool {
         }
     }
 
-    loadTags(target: PathEntry) {
+    loadTags(target: TagState) {
         // console.log("load")
         this.queue.push(target);
         if (this.watcherToken === null) {
@@ -55,8 +56,8 @@ export class ProcessPool {
         var freeProcess = this.processes.find(val => val.task === null);
         if (freeProcess !== undefined) {
             freeProcess.task = this.queue.pop();
-            console.log("sending " + freeProcess.task.path)
-            freeProcess.proc.send(freeProcess.task.path);
+            console.log("sending " + freeProcess.task.pathEntry.path)
+            freeProcess.proc.send(freeProcess.task.pathEntry.path);
             // console.log(freeProcess.proc.stdin)
         }
         // console.log("manage")

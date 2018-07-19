@@ -1,8 +1,9 @@
-import { PathEntry, ID3TagManager, ID3Tags } from "../PathEntry";
+import { PathEntry, ID3TagManager, ID3Tags } from "../components/song-modules/PathEntry";
 import { TextFilter,
          ClearTextBetweenCharsFilter,
          RemoveCharFilter 
        } from "./SuggestionFilters"
+import { InterfaceEntry } from "../components/song-modules/interface-entry";
 export interface Suggestion{
     tags: any;
     title: String;
@@ -16,7 +17,7 @@ export class KeepTagsSuggestion implements Suggestion{
     tags: ID3Tags = null;
     title: String = "Keep existing tags";
     filters: TextFilter[] = [];
-    constructor(public song: PathEntry){
+    constructor(public song: InterfaceEntry){
         
     }
 
@@ -61,7 +62,7 @@ export class KeepTagsSuggestion implements Suggestion{
     }
 
     protected resetTags(){
-        this.tags =  Object.assign({}, this.song.tags);
+        this.tags =  Object.assign({}, this.song.tagState.tags);
     }
 
     getTag(name: String):any {
@@ -73,9 +74,9 @@ export class FileNameSuggestion extends KeepTagsSuggestion{
     tags: ID3Tags = null;
     title: String = "Guessed from filename"
     path: String;
-    constructor(public song: PathEntry){
+    constructor(public song: InterfaceEntry){
         super(song);
-        this.path = song.fileName.replace(/_/g, ' ');
+        this.path = song.file.fileName.replace(/_/g, ' ');
     }
     
     processData(){
@@ -97,7 +98,7 @@ export class ReverseFileNameSuggestion extends FileNameSuggestion {
     tags: ID3Tags = null;
     title: String = "Guessed from filename"
     path: String;
-    constructor(public song: PathEntry) {
+    constructor(public song: InterfaceEntry) {
         super(song);
     }
 

@@ -1,5 +1,6 @@
 import { ProcessPool } from "./process-pool";
-import { PathEntry } from "./PathEntry";
+import { PathEntry } from "./components/song-modules/PathEntry";
+import { TagState } from "./components/song-modules/TagState";
 
 
 const NodeID3 = require('node-id3')
@@ -35,13 +36,12 @@ const pool = new ProcessPool(3);
 
 export class ID3TagManager {
 
-    constructor(public path: String) { }
 
-    setTags(target: PathEntry) {
+    static setTags(target: TagState) {
         pool.loadTags(target);
     }
 
-    saveTags(modifiedTags: ID3Tags, filePath: String) {
+    static saveTags(modifiedTags: ID3Tags, filePath: String) {
         return NodeID3.write(modifiedTags, filePath);
     }
 

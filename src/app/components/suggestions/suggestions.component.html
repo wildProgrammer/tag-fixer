@@ -21,7 +21,10 @@
 <div class = "suggestion-container">
   <ul >
     <li *ngFor="let suggest of suggestions">
-      <div class="li-content" *ngIf="suggest.getData()" (click)="toEdit(suggest)">
+      <div 
+      class="li-content" 
+      *ngIf="suggest.getData()" 
+      (click)="toEdit(suggest)">
        <div class="suggest-header"> {{suggest.title}} </div>
         <table>
         

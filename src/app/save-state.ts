@@ -1,8 +1,9 @@
-import { PathEntry } from "./PathEntry";
+import { PathEntry } from "./components/song-modules/PathEntry";
+import { InterfaceEntry } from "./components/song-modules/interface-entry";
 
 export class SaveState{
     current: number = 0;
-    toBeSaved: PathEntry[] = [];
+    toBeSaved: InterfaceEntry[] = [];
     currentlySaving: String;
     constructor(){}
 

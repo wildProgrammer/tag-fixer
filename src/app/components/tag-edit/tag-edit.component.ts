@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnDestroy, ViewChild, ElementRef } from '@ang
 import { FilesListService } from '../../files-list.service'
 import { ActivatedRoute } from '@angular/router';
 import { ID3TagManager } from '../../ID3TagManager';
-import { PathEntry, ID3Tags } from '../../PathEntry';
+import { PathEntry, ID3Tags } from '../song-modules/PathEntry';
 import { validateConfig } from '@angular/router/src/config';
 import { ValueTransformer } from '@angular/compiler/src/util';
 import {getAlias, TagAlias} from '../../supported-aliases'
@@ -10,6 +10,7 @@ import { UpperfirstPipe } from '../../pipes/upperfirst.pipe'
 import { jsonpCallbackContext } from '@angular/common/http/src/module';
 import { readFile, readFileSync } from 'fs';
 import {supportedAliases, supportedAliasesNames} from "../../supported-aliases"
+import { InterfaceEntry } from '../song-modules/interface-entry';
 @Component({
   selector: 'app-tag-edit',
   templateUrl: './tag-edit.component.html',
@@ -21,48 +22,66 @@ export class TagEditComponent implements OnInit, OnDestroy{
   tagOptions: ElementRef
 
   @Input()
-  entry: PathEntry;
+  entry: InterfaceEntry;
 
   private _tagNamesWithTypes: TagAlias[] = null;
 
   private _availableTags:String[] = supportedAliasesNames.slice(0);
   
-  selectedImage: {
-    path: string,
-    mimeType: string
-  } = null;
+  get selectedImage(){
+    return this.entry.editState.selectedImage;
+  }
+
+  set selectedImage(value){
+    this.entry.editState.selectedImage = value;
+  }
+
+  get decodedImg(){
+    return this.entry.editState.decodedImg
+  }
+
+  set decodedImg(val: string){
+    this.entry.editState.decodedImg = val;
+  }
+
+  get newTagName(){
+    return this.entry.editState.newTagName;
+  }
+
+  set newTagName(value){
+    console.log("newTagName set "+value)
+    this.entry.editState.newTagName=value;
+  }
   
-  decodedImg = null;
-  
-  newTagName: string;
+
   
   get tags(): ID3Tags{
-    return this.entry.tags
+    return this.entry.tagState.tags
   }
   
   constructor(private filesService: FilesListService) {
   }  
 
   ngOnInit() {
-    this._tagNamesWithTypes = null;
     this._availableTags = supportedAliasesNames.slice(0);
+    this.initTagNamesTypes()
+  }
+
+  initTagNamesTypes(){
+    var names = Object.keys(this.entry.tagState.tags);
+
+    names = names.filter(el => {
+      return el != "raw" && el != "comment"
+    })
+
+    var namesWithTypes = names.map(getAlias)
+      .sort((a, b) => Number(a.name > b.name));
+    this._tagNamesWithTypes = namesWithTypes;
+
+    this.removeOptionsThatArePresent();
   }
 
   get tagNamesTypes(): any[]{
-    if(this._tagNamesWithTypes === null){
-      var names = Object.keys(this.entry.tags);
-    
-      names = names.filter(el => {
-        return el !="raw" && el != "comment"
-      })
-    
-      var namesWithTypes = names.map(getAlias)
-                                .sort((a, b)=> Number(a.name > b.name));
-      this._tagNamesWithTypes = namesWithTypes;
-
-      this.removeOptionsThatArePresent();
-
-    }
     return this._tagNamesWithTypes;
   }
 
@@ -119,7 +138,7 @@ export class TagEditComponent implements OnInit, OnDestroy{
       mimeType: img.type
     }
     this.tags.image.mime = this.selectedImage.mimeType;
-    this.tags.image.imageBuffer = readFileSync(this.selectedImage.path)
+    this.tags.image.imageBuffer = readFileSync(this.selectedImage.path as string)
   }
 
   showTagOptions(){

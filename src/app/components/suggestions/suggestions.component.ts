@@ -1,13 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FilesListService } from '../../files-list.service'
 import { ActivatedRoute } from '@angular/router';
-import { PathEntry, ID3TagManager, ID3Tags } from '../../PathEntry'
+import { PathEntry, ID3TagManager, ID3Tags } from '../song-modules/PathEntry'
 import { Suggestion
          ,KeepTagsSuggestion
          ,FileNameSuggestion
          ,ReverseFileNameSuggestion
         } from '../../Suggestion-kinds/Suggestion';
 import { TextFilter, RemoveCharFilter, ClearTextBetweenCharsFilter } from '../../Suggestion-kinds/SuggestionFilters';
+import { InterfaceEntry } from '../song-modules/interface-entry';
 
 interface FilterDescriptor {
   obj: TextFilter;
@@ -43,12 +44,14 @@ export class SuggestionsComponent implements OnInit {
     ] 
 
   @Input()
-  set song(entry: PathEntry){
+  set song(entry: InterfaceEntry){
+    var oldEntry = this.entry
     this.entry = entry;
-    this.reload();
+    if(oldEntry!=this.entry)
+      this.reload();
   }
 
-  entry: PathEntry;
+  entry: InterfaceEntry;
 
   constructor(private filesService: FilesListService) {
     
@@ -67,7 +70,7 @@ export class SuggestionsComponent implements OnInit {
   }
 
   toEdit(suggestion: Suggestion){
-    this.entry.tags = suggestion.tags;
+    this.entry.tagState.tags = suggestion.tags;
   }
   
   triggerChange(filter: FilterDescriptor){

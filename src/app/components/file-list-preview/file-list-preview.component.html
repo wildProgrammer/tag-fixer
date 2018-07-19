@@ -9,11 +9,11 @@
   <ul>
     <li 
         *ngFor="let entry of pathEntries"
-        [ngClass]="{false:'folder',true:'file'}[entry.isFile]"> 
+        [ngClass]="{false:'folder',true:'file'}[entry.file.isFile]"> 
         
       <img (click)="deleteEntry(entry)" 
       src="../../../assets/images/delete_icon.png"
-      class="del-icon"/>{{entry.path}}
+      class="del-icon"/>{{entry.file.path}}
      </li >
   </ul>
 </div>

@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FilesListService } from '../../files-list.service'
 import { ActivatedRoute, Router } from '@angular/router';
-import { PathEntry } from '../../PathEntry';
+import { PathEntry } from '../song-modules/PathEntry';
 import { SaveState } from '../../save-state';
 import { HostListener } from '@angular/core';
+import { InterfaceEntry } from '../song-modules/interface-entry';
 
 const leftKey = 37,
       upKey = 38,
@@ -43,34 +44,34 @@ export class DisplayMenuComponent implements OnInit {
   ngOnInit() {
     
     var defaultSelector = setInterval(()=>{
-      if(this.pathEntries.length>0 && this.pathEntries[0].tagsLoaded){
+      if(this.pathEntries.length>0 && this.pathEntries[0].tagState.tagsLoaded){
         this.selectedEntry = this.pathEntries[0];
         clearInterval(defaultSelector);
       }
     }, 20);
 
     this.pathEntries.forEach(el => {
-      if(el.isFile)
-        el.loadTags()
+      if(el.file.isFile)
+        el.tagState.loadTags()
     })
     this.filesService.searchInFolders();
     // console.log("after search in folders" + this.filesService.pathEntries)
   }
 
-  get pathEntries(): PathEntry[]{
+  get pathEntries(): InterfaceEntry[]{
     return this.filesService.pathEntries;
   }
 
-  selectEntry(entry: PathEntry){
-    console.log("click" + entry.fileName);
+  selectEntry(entry: InterfaceEntry){
+    console.log("click" + entry.file.fileName);
     this.selectedEntry = entry;
   }
 
-  get selectedEntry(): PathEntry{
+  get selectedEntry(){
     return this.filesService.selectedEntry;
   }
 
-  set selectedEntry(value: PathEntry){
+  set selectedEntry(value: InterfaceEntry){
     this.filesService.selectedEntry = value;
   }
 
@@ -83,7 +84,7 @@ export class DisplayMenuComponent implements OnInit {
   }
 
   toSuggestions(): void{
-    this.selectedEntry.resetTags();
+    this.selectedEntry.tagState.resetTags();
   }  
 
   toMainMenu(): void{
@@ -96,15 +97,15 @@ export class DisplayMenuComponent implements OnInit {
     this.savingState = new SaveState();
     this.saving = true;
     this.filesService.pathEntries.forEach(el => {
-      if (el.isEdited()) {
+      if (el.tagState.isEdited()) {
         this.savingState.toBeSaved.unshift(el);
       }
     })
     this.savingState.toBeSaved.forEach((el) => {
       setTimeout(()=>
       {
-        this.savingState.currentlySaving = el.fileName;
-        if (el.save())
+        this.savingState.currentlySaving = el.file.fileName;
+        if (el.tagState.save())
           this.savingState.current++;
           
       } , 0);

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Directive, ElementRef } from '@angular/core';
-import { PathEntry } from '../../PathEntry';
+import { PathEntry } from '../song-modules/PathEntry';
 import { FilesListService } from '../../files-list.service'
 import { hasValidExtension } from '../../file-utility'
 const fs = require("fs");
