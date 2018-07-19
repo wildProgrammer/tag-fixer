@@ -96,7 +96,7 @@ export class TagEditComponent implements OnInit, OnDestroy{
     this.removeOptionsThatArePresent();
   }
 
-  get tagNamesTypes(): any[]{
+  get tagNamesTypes(){
 
     return this._tagNamesWithTypes;
   }
@@ -186,9 +186,15 @@ export class TagEditComponent implements OnInit, OnDestroy{
     }
     this.availableTags.splice(pos, 1);
     var alias = getAlias(this.newTagName);
-    this._tagNamesWithTypes.push(alias);
+    this.insertTag(alias);
     if(this.availableTags.length > 0)
       this.newTagName = this.availableTags[0]
+  }
+
+  insertTag(alias: TagAlias){
+    for(var i=0; i<this.tagNamesTypes.length; i++)
+      if(this.tagNamesTypes[i].name > alias.name) break;
+    this.tagNamesTypes.splice(i, 0, alias)
   }
 
   get availableTags(){
