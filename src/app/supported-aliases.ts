@@ -71,3 +71,13 @@ export const supportedAliases : TagAlias[] = [
 
 export const supportedAliasesNames =
              supportedAliases.map(el => el.name).sort();
+
+export const aliasesPrototypes = {
+    "string" : () => "",
+    "number" : () => 2000,
+    "time"   : () => new Date(),
+    "date"   : () => new Date(),
+    "lyrics" : () =>  { return { language: "en",
+                                 text: "your lyrics" } }
+    
+}

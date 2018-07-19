@@ -5,7 +5,7 @@ import { ID3TagManager } from '../../ID3TagManager';
 import { PathEntry, ID3Tags } from '../song-modules/PathEntry';
 import { validateConfig } from '@angular/router/src/config';
 import { ValueTransformer } from '@angular/compiler/src/util';
-import {getAlias, TagAlias} from '../../supported-aliases'
+import {getAlias, TagAlias, aliasesPrototypes} from '../../supported-aliases'
 import { UpperfirstPipe } from '../../pipes/upperfirst.pipe'
 import { jsonpCallbackContext } from '@angular/common/http/src/module';
 import { readFile, readFileSync } from 'fs';
@@ -192,6 +192,8 @@ export class TagEditComponent implements OnInit, OnDestroy{
   }
 
   insertTag(alias: TagAlias){
+    console.log(aliasesPrototypes[alias.type as string]())
+    this.entry.tagState.tags[alias.name as string] = aliasesPrototypes[alias.type as string]();
     for(var i=0; i<this.tagNamesTypes.length; i++)
       if(this.tagNamesTypes[i].name > alias.name) break;
     this.tagNamesTypes.splice(i, 0, alias)
