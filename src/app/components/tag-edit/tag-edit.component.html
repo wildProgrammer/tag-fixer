@@ -1,17 +1,26 @@
+<div style="padding-bottom: 15vh">
 <div class="title">
     Tags
-    <img class="add_butt"
-         src="../../../assets/images/plus-square-regular-green.svg"
-         (click)="addTag()">
-    <select id="tag-options" ([ngModel])="newTagName">
-        <option 
-        *ngFor="let tagName of availableTags"
-        ng-selected="newTagName == tagName"
-        [value]="tagName" >
-        {{tagName | upperfirst}}
-        </option>
-    </select>
+    <div *ngIf="availableTags.length > 0" class="line">
+        <img class="add_butt"
+        src="../../../assets/images/plus-square-regular-green.svg"
+        (click)="addTag()">
+        <select 
+            id="tag-options" 
+            (change)="newTagName=$event.target.value" >
+            
+            <option disabled selected>Select tag</option>
+            <option 
+                *ngFor="let tagName of availableTags"
+                [value]="tagName"
+            >
+                {{tagName | upperfirst}}
+            </option>
+
+        </select>
+    </div>
 </div> 
+
 <ul>
     <li *ngFor="let tagAlias of tagNamesTypes">
         <table >
@@ -53,3 +62,4 @@
         </table>
     </li>
 </ul>
+</div>

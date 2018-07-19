@@ -70,15 +70,7 @@ $edited: #32c3dd;
         }
     }
 }
-
-.edit-window{
-    display: flex;
-    flex-direction: column;
-    // align-content: center;
-    width: 100vw;
-    padding-bottom: 120px;
-    
-    .path-title{
+.path-title{
         text-align: center;
         padding-top: 0.6em;
         padding-bottom: 0.6em;
@@ -88,10 +80,17 @@ $edited: #32c3dd;
         font-size: 2vw;
         flex-basis: 80px;
         height: 80px;
-        display: flex;
         flex-direction: column;
         justify-content: center;
     }
+.edit-window{
+    display: flex;
+    flex-direction: column;
+    // align-content: center;
+    width: 100vw;
+    padding-bottom: 300px;
+    
+    
 }
 
 .footer{

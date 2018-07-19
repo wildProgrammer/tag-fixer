@@ -51,6 +51,7 @@ export class TagEditComponent implements OnInit, OnDestroy{
   }
 
   set decodedImg(val: string){
+    
     this.entry.editState.decodedImg = val;
   }
 
@@ -69,13 +70,16 @@ export class TagEditComponent implements OnInit, OnDestroy{
     return this.entry.tagState.tags
   }
   
-  constructor(private filesService: FilesListService) {
-  }  
+  constructor(private filesService: FilesListService) {}  
 
   ngOnInit() {
     console.log("ngInit")
     this._availableTags = supportedAliasesNames.slice(0);
     this.initTagNamesTypes();
+  }
+
+  selectTagName(name){
+    this.newTagName = name;
   }
 
   initTagNamesTypes(){
@@ -116,11 +120,16 @@ export class TagEditComponent implements OnInit, OnDestroy{
 
   get image(){
     //TODO: var data = getMyvalue(this, ["tags", "image", "imageBuffer", "data"])
-    if(this.selectedImage){
-      return "file://" + this.selectedImage.path
+    try{
+      if(this.selectedImage){
+        return "file://" + this.selectedImage.path
+      }
+      else if(this.decodedImg === null)
+        this.decodedImg = this.decode(this.tags.image);
+      }
+    catch(err){
+      return ""
     }
-    else if(this.decodedImg === null)
-      this.decodedImg = this.decode(this.tags.image);
     return this.decodedImg;
   }
 
@@ -167,9 +176,19 @@ export class TagEditComponent implements OnInit, OnDestroy{
   };
 
   addTag(){
-    var alias = getAlias(this.newTagName);
+    var pos = this.availableTags.indexOf(this.newTagName);
     console.log("add tag" + this.newTagName)
+    console.log(this.availableTags)
+    console.log(pos)
+    if(pos === -1){
+      alert("Selected tag isn't available")
+      return
+    }
+    this.availableTags.splice(pos, 1);
+    var alias = getAlias(this.newTagName);
     this._tagNamesWithTypes.push(alias);
+    if(this.availableTags.length > 0)
+      this.newTagName = this.availableTags[0]
   }
 
   get availableTags(){
