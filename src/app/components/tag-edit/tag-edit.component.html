@@ -55,7 +55,18 @@
                                hidden
                                accept=".gif,.jpg,.jpeg,.png"
                                (change)="changeImage($event)"
-                               >
+                               />
+                    </div>
+                    <input
+                    *ngIf="tagAlias.type === 'number'"
+                    type = "number"
+                    [(ngModel)] = "tags[tagAlias.name]"
+                    />
+                    <div  *ngIf="tagAlias.type === 'lyrics'">
+                        <input type="text" [(ngModel)]="tags[tagAlias.name].language">
+                        <textarea [(ngModel)]="tags[tagAlias.name].text">
+
+                        </textarea>
                     </div>
                 </td>
             </tr>
