@@ -22,7 +22,17 @@ export class TagEditComponent implements OnInit, OnDestroy{
   tagOptions: ElementRef
 
   @Input()
-  entry: InterfaceEntry;
+  set entry(val: InterfaceEntry){
+    this._entry = val;
+    this.ngOnInit();
+  }
+
+  get entry(){
+    return this._entry 
+  }
+
+  _entry: InterfaceEntry;
+
 
   private _tagNamesWithTypes: TagAlias[] = null;
 
@@ -63,8 +73,9 @@ export class TagEditComponent implements OnInit, OnDestroy{
   }  
 
   ngOnInit() {
+    console.log("ngInit")
     this._availableTags = supportedAliasesNames.slice(0);
-    this.initTagNamesTypes()
+    this.initTagNamesTypes();
   }
 
   initTagNamesTypes(){
@@ -82,6 +93,7 @@ export class TagEditComponent implements OnInit, OnDestroy{
   }
 
   get tagNamesTypes(): any[]{
+
     return this._tagNamesWithTypes;
   }
 
@@ -165,6 +177,6 @@ export class TagEditComponent implements OnInit, OnDestroy{
   }
 
   ngOnDestroy(){
-    // this.selectedImage = null;
+    // this._tagNamesWithTypes = null;
   }
 }
