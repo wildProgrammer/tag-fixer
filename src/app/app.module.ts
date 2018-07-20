@@ -26,7 +26,7 @@ import { FilesListService } from "./files-list.service";
 import { DisplayMenuComponent } from './components/display-menu/display-menu.component';
 import { SuggestionsComponent } from './components/suggestions/suggestions.component';
 import { SavingModalComponent } from './components/saving-modal/saving-modal.component';
-import { UpperfirstPipe } from './pipes/upperfirst.pipe'
+import { TagFormatPipe } from './pipes/tagformat.pipe'
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -43,7 +43,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     DisplayMenuComponent,
     SuggestionsComponent,
     SavingModalComponent,
-    UpperfirstPipe
+    TagFormatPipe
   ],
   imports: [
     BrowserModule,

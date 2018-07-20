@@ -14,7 +14,7 @@
                 *ngFor="let tagName of availableTags"
                 [value]="tagName"
             >
-                {{tagName | upperfirst}}
+                {{tagName | tagformat}}
             </option>
 
         </select>
@@ -31,7 +31,7 @@
                     src="../../../assets/images/delete_icon.png"
                      (click)="removeTag(tagAlias.name)">
                     <label [for]="tagAlias.name">
-                        {{tagAlias.name | upperfirst}}
+                        {{tagAlias.name | tagformat}}
                     </label>
                 </td>
                 <td>

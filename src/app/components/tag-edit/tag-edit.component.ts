@@ -6,7 +6,7 @@ import { PathEntry, ID3Tags } from '../song-modules/PathEntry';
 import { validateConfig } from '@angular/router/src/config';
 import { ValueTransformer } from '@angular/compiler/src/util';
 import {getAlias, TagAlias, aliasesPrototypes} from '../../supported-aliases'
-import { UpperfirstPipe } from '../../pipes/upperfirst.pipe'
+import { TagFormatPipe } from '../../pipes/tagformat.pipe'
 import { jsonpCallbackContext } from '@angular/common/http/src/module';
 import { readFile, readFileSync } from 'fs';
 import {supportedAliases, supportedAliasesNames} from "../../supported-aliases"

@@ -1,8 +1,8 @@
-import { UpperfirstPipe } from './upperfirst.pipe';
+import { TagFormatPipe } from './tagformat.pipe';
 
 describe('UpperfirstPipe', () => {
   it('create an instance', () => {
-    const pipe = new UpperfirstPipe();
+    const pipe = new TagFormatPipe();
     expect(pipe).toBeTruthy();
   });
 });
