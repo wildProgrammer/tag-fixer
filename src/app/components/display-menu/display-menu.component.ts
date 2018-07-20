@@ -116,5 +116,21 @@ export class DisplayMenuComponent implements OnInit {
     },
     500);
   }
-  
+
+  allFilesLoaded(){
+    // for(var val of this.pathEntries)
+    //   if(!val.tagState.tagsLoaded){
+    //     return false;
+    //   }
+    // return true;
+    return this.pathEntries.every(el => el.tagState.tagsLoaded)
+  }
+
+  get filesLoaded(){
+    return this.pathEntries.filter(el => el.tagState.tagsLoaded);
+  }
+
+  get filesEdited(){
+    return this.pathEntries.filter(el => el.tagState.isEdited())
+  }
 }

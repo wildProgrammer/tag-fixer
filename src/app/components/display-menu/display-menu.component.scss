@@ -1,7 +1,9 @@
 $bright-green: #00bd4f;
 $dark-brown: #2b1f1f;
 $moderate-green: #007c34;
+$dark-green: #005e27;
 $edited: #32c3dd;
+$pale-brown: #6b6363;
 .container{
     display: flex;
     align-content: unset;
@@ -12,15 +14,57 @@ $edited: #32c3dd;
 }
 
 
+#file-loading-spinner{
+    width: 200px;
+    height: 40px;
+    margin-left: 0px;
+    position: absolute
+}
+
+#files-loaded-counter{
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px;
+    color: white;
+}
+
+.hide-spinner{
+    // display: none;
+    visibility: hidden;
+    
+    margin-right: auto;
+}
+
+
 .file-list{
     // padding: 5px;
+
+    &::-webkit-scrollbar{
+        width:6px;
+    }
+
+    &::-webkit-scrollbar-track{
+        background: $dark-green;
+    }
+
+    &::-webkit-scrollbar-thumb{
+        background: $moderate-green;
+        border-radius: 2px;
+    }
+
+    &::-webkit-scrollbar-thumb:hover{
+        background: $bright-green;
+    }
+
     audio
     {
         width: 200px;
     }
+    z-index: 3;
     overflow: auto;
     float:left;
-    background: rgba(0,119,47,0.5);
+    background: $dark-green;
     position: fixed;
     height:100%;
     left:0;
@@ -53,7 +97,7 @@ $edited: #32c3dd;
 
         li:hover{
             background: $bright-green;
-            text-shadow: 1px 1px black;
+            // text-shadow: 1px 1px black;
         }
 
         li.edited{
@@ -102,7 +146,7 @@ $edited: #32c3dd;
     display: flex;
     align-content: center;
     overflow: hidden;
-    background: rgba($color: #ffffff, $alpha: 0.3);
+    background: $pale-brown;
     z-index: 2;
     ul{
         display: flex;

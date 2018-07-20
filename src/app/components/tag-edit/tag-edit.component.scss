@@ -35,7 +35,7 @@ table{
 }
 
 input, textarea{
-    border: 2px rgba($color: #ffffff, $alpha: 0.3) solid;
+    border: 2px rgba($color: #ffffff, $alpha: 0.5) solid;
     padding: 5px;
     background: $dark-brown;
     width: 30vw;
@@ -45,7 +45,7 @@ input, textarea{
 
 input{
     font-size: 20px;
-    color: rgba($color: #ffffff, $alpha: 0.5);
+    color: rgba($color: #ffffff, $alpha: 0.7);
 }
 
 textarea{
@@ -60,8 +60,8 @@ textarea:focus, input:focus{
 }
 
 .del_butt{
-    width: 2.5em;
-    height: 2.5em;
+    width: 1em;
+    height: 1em;
     cursor: pointer;
 }
 
@@ -84,6 +84,7 @@ svg{
 #image-tag{
     width:200px;
     height:200px;
+    cursor: pointer;
 }
 
 #image-tag[src=""]{
@@ -112,6 +113,7 @@ svg{
 }
 
 .pick-img-label{
+    cursor: pointer;
     font-size: 20px;
     border: $bright-green 2px solid;
     padding: 0 3px 0 3px;

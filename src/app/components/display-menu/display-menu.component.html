@@ -1,9 +1,16 @@
 <div class="file-list">
     <div>
-        <!-- <audio controls>
-                <source [src]="selectedEntry.url" type="audio/mp3">
-        </audio> -->
-        <!-- <audio [src]="selectedEntry.url" type="audio/mp3"></audio> -->
+        <img 
+            src="../../../assets/images/file-loading2.svg"
+            id="file-loading-spinner"
+            [ngClass]="{'hide-spinner': allFilesLoaded()}"
+        />
+        <div *ngIf="allFilesLoaded()" id="files-loaded-counter">
+        {{
+            filesEdited.length + '/' + pathEntries.length + ' files edited'
+        }}
+        
+    </div>
     </div>
     <ul>
         <li *ngFor="let entry of pathEntries" (click)="selectEntry(entry)" 
