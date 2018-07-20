@@ -29,17 +29,34 @@ table{
     
     table-layout:fixed;
     td:first-child{
-        width: 150px;
+        min-width: 150px;
+        width: 25vw;
     }
 }
 
-input{
-    background: rgba($color: #ffffff, $alpha: 0.3);
-    font-size: 20px;
-    background: $dark-brown;
+input, textarea{
     border: 2px rgba($color: #ffffff, $alpha: 0.3) solid;
-    padding: 0.3em;
+    padding: 5px;
+    background: $dark-brown;
+    width: 30vw;
+    min-width: 120px;
+    
+}
+
+input{
+    font-size: 20px;
     color: rgba($color: #ffffff, $alpha: 0.5);
+}
+
+textarea{
+    min-height: 50px;
+    font-size: 12px;
+    color: white;
+}
+
+textarea:focus, input:focus{
+    border-color: orange;
+    color: white;
 }
 
 .del_butt{
@@ -69,6 +86,10 @@ svg{
     height:200px;
 }
 
+#image-tag[src=""]{
+    display: none;
+}
+
 #tag-options {
     font-size: 17px;
     background: rgb(201, 201, 201);
@@ -78,4 +99,28 @@ svg{
 #tag-options option{
     background: inherit;
     color: inherit;
+}
+
+.lyrics{
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+    flex-wrap: nowrap;
+    font-size: 19px;
+    color: $bright-green;
+    
+}
+
+.pick-img-label{
+    font-size: 20px;
+    border: $bright-green 2px solid;
+    padding: 0 3px 0 3px;
+    font-weight: bolder;
+    width: 200px;
+    text-align: center;
+}
+
+.pick-img-label:hover{
+    border-color: $edited;
+    
 }

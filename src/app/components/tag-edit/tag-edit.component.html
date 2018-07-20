@@ -46,8 +46,8 @@
                             <img 
                              id="image-tag" 
                              [src]="image"
-                             alt="no-img"/>
-                            Pick image
+                             alt=""/>
+                            <div class="pick-img-label">Pick image</div>
                         </label>
                         <input id="image-picker"
                                name="image-picker"
@@ -62,8 +62,10 @@
                     type = "number"
                     [(ngModel)] = "tags[tagAlias.name]"
                     />
-                    <div  *ngIf="tagAlias.type === 'lyrics'">
+                    <div class="lyrics" *ngIf="tagAlias.type === 'lyrics'">
+                        Language
                         <input type="text" [(ngModel)]="tags[tagAlias.name].language">
+                        Text
                         <textarea [(ngModel)]="tags[tagAlias.name].text">
 
                         </textarea>

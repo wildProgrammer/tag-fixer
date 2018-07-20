@@ -78,6 +78,7 @@ export const aliasesPrototypes = {
     "time"   : () => new Date(),
     "date"   : () => new Date(),
     "lyrics" : () =>  { return { language: "en",
-                                 text: "your lyrics" } }
+                                 text: "your lyrics" } },
+    "image"  : () => { return {} }
     
 }
