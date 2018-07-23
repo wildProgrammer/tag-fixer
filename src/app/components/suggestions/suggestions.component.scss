@@ -5,25 +5,28 @@ $edited: #32c3dd;
 $bright-brown: #382828;
 .title{
     padding: 0.5em;
-    font-size: 24px;
+    font-size: 2.95vw;
+    height: 4vw;
     font-weight: bold;
     color: white;
 }
 
+.whole-suggestion-container{
+    overflow-y: auto;
+}
+
 .suggestion-container{
-    
     ul{
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding-bottom: 13.7vh;
+        // padding-bottom: 13.7vh;
     }
     color: white;
-    overflow: hidden;
     li{
         list-style: none;
         .li-content{
-            font-size: 2.8vmin;
+            font-size: 2vmin;
             width: 40vw;
             // height: 15vh;
             min-height: 100px;
@@ -55,8 +58,8 @@ $bright-brown: #382828;
 
 .filters-container{
     li{
-        list-style: none;
         font-size: 2.3vw;    
+        list-style: none;
         color: wheat;
         font-weight: 600;
         margin-bottom: 10px;
@@ -72,8 +75,49 @@ $bright-brown: #382828;
 
 @media screen and (max-width: 600px) , screen and (max-height: 620px) {
     .suggestion-container li .li-content{  
-         font-size: 15px;
+         font-size: 12px;
     }
+    .suggestion-container .suggest-header{
+        font-size: 15px;
+    }
+}
+
+@media screen and (min-width: 900px){
+    .filters-container{
+        li{
+            font-size: 21px;
+        }
+    }
+    .title{
+        font-size: 24px;
+    }
+
+    
+    
+}
+
+@media screen and (min-width: 840px) {
+
+
+    .suggestion-container .suggest-header{
+        font-size: 20px;
+    }
+
+    .suggestion-container li .li-content{  
+         font-size: 19px;
+    }
+}
+@media screen and (max-width: 500px) {
+    .filters-container{
+        li{
+            font-size: 11px;
+        }
+    }
+    .title{
+        font-size: 14px;
+    }
+
+    
 }
 // @media (max-width: 508px){
 //      li .li-content{  

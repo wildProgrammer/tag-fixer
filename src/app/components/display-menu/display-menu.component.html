@@ -19,7 +19,7 @@
         'invisible-li': !entry?.tagState?.tagsLoaded }"
         [title]="entry?.file.fileName"
             >
-            {{entry?.file.fileName.trim()}}
+            <div>{{entry?.file.fileName.trim()}}</div>
         </li>  
         <!-- <li>04 - A Step Back.mp3</li>
             <li>04 - A Step Back.mp3</li>
@@ -32,11 +32,13 @@
         <div class="path-title">
             {{ selectedEntry?.file.path}}
         </div>
+        <div class="scrollpane">
         <div *ngIf="selectedEntry?.tagState.isEdited()">
             <app-tag-edit [entry]="selectedEntry"></app-tag-edit>
         </div>
         <div *ngIf="!selectedEntry?.tagState.isEdited()">
             <app-suggestions [song]="selectedEntry"></app-suggestions>
+        </div>
         </div>
         <div class="footer">
             <ul>
