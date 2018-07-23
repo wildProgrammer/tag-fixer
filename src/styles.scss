@@ -2,7 +2,12 @@
 $bright-green: #00bd4f;
 $dark-brown: #2b1f1f;
 $moderate-green: #007c34;
+@font-face {
+font-family: Poppins;
+src: url('./assets/fonts/Poppins-Medium.ttf');
+}
 html, body {
+  font-family: 'Poppins';
   margin: 0;
   padding: 0;
   background: $dark-brown;
