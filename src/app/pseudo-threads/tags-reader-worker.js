@@ -7,7 +7,6 @@ function setSubscription() {
     process.on('message', function (path) {
         var response = NodeID3.read(path);
         process.send(response);
-        setSubscription();
     })
 
 }

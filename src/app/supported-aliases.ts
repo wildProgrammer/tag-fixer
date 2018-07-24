@@ -75,7 +75,10 @@ export const supportedAliasesNames =
 export const aliasesPrototypes = {
     "string" : () => "",
     "number" : () => 2000,
-    "time"   : () => new Date(),
+    "time"   : () => {
+        var date = new Date();
+        return date.getHours() + ":" + date.getMinutes() 
+    },
     "date"   : () => new Date(),
     "lyrics" : () =>  { return { language: "en",
                                  text: "your lyrics" } },

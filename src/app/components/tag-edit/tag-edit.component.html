@@ -57,6 +57,16 @@
                                (change)="changeImage($event)"
                                />
                     </div>
+                    <input 
+                        *ngIf="tagAlias.type === 'date'"
+                        [name]="tagAlias.name"
+                        type="date"
+                        [(ngModel)]="tags[tagAlias.name]"/> 
+                    <input 
+                        *ngIf="tagAlias.type === 'time'"
+                        [name]="tagAlias.name"
+                        type="time"
+                        [(ngModel)]="tags[tagAlias.name]"/> 
                     <input
                     *ngIf="tagAlias.type === 'number'"
                     type = "number"

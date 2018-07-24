@@ -85,7 +85,7 @@ export class FilesListService {
     this.entries = newEntries;
   }
 
-  selectNextEntry(){
+  selectPreviousEntry(){
     var i = this.entries.findIndex(e => e == this.selectedEntry);
     if(i < this.entries.length - 1)
       this.selectedEntry = this.entries[i+1];
@@ -93,12 +93,15 @@ export class FilesListService {
       this.selectedEntry = this.entries[0];
   }
 
-  selectPreviousEntry(){
+  selectNextEntry(){
     var i = this.entries.findIndex(e => e == this.selectedEntry);
-    if(i > 0)
-      this.selectedEntry = this.entries[i-1];
-    else 
-      this.selectedEntry = this.entries[this.entries.length-1];
+    for(var j = i>0 ? i-1: this.entries.length; !this.entries[j].tagState.tagsLoaded; j=j>0? j--: this.entries.length);
+    
+    this.selectedEntry = this.entries[j];
+    // if(i > 0)
+      //   this.selectedEntry = this.entries[i-1];
+      // else 
+      //   this.selectedEntry = this.entries[this.entries.length-1];
   }
 
   reset(): void{
