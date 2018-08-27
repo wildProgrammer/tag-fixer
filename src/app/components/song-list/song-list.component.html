@@ -1,0 +1,31 @@
+<div class="file-list">
+  <div>
+    
+    <img src="../../../assets/images/file-loading2.svg" 
+    id="file-loading-spinner" 
+    [hidden]="allFilesLoaded()"
+    />
+
+    <div *ngIf="allFilesLoaded()" 
+        id="files-loaded-counter">
+      {{ filesEdited.length + '/' + pathEntries.length + ' files edited' }}
+
+    </div>
+  </div>
+  <ul>
+    <li *ngFor="let entry of pathEntries" 
+        (click)="selectEntry(entry)" 
+        [hidden]="entry && !entry.tagState.tagsLoaded"
+        [ngClass]="{'selected': entry === selectedEntry,
+        'edited': entry && entry.tagState.isEdited()}" 
+        [title]="entry?.file.fileName">
+
+      <div>{{entry?.file.fileName.trim()}}</div>
+
+    </li>
+    <!-- <li>04 - A Step Back.mp3</li>
+            <li>04 - A Step Back.mp3</li>
+            <li>04 - A Step Back.mp3</li>
+            <li>04 - A Step Back allalalalalalalalal.mp3</li> -->
+  </ul>
+</div>

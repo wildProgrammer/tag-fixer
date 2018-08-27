@@ -43,18 +43,7 @@ export class DisplayMenuComponent implements OnInit {
 
   ngOnInit() {
     
-    var defaultSelector = setInterval(()=>{
-      if(this.pathEntries.length>0 && this.pathEntries[0].tagState.tagsLoaded){
-        this.selectedEntry = this.pathEntries[0];
-        clearInterval(defaultSelector);
-      }
-    }, 20);
-
-    this.pathEntries.forEach(el => {
-      if(el.file.isFile)
-        el.tagState.loadTags()
-    })
-    this.filesService.searchInFolders();
+   
     // console.log("after search in folders" + this.filesService.pathEntries)
   }
 
@@ -62,18 +51,13 @@ export class DisplayMenuComponent implements OnInit {
     return this.filesService.pathEntries;
   }
 
-  selectEntry(entry: InterfaceEntry){
-    console.log("click" + entry.file.fileName);
-    this.selectedEntry = entry;
-  }
+  
 
   get selectedEntry(){
     return this.filesService.selectedEntry;
   }
 
-  set selectedEntry(value: InterfaceEntry){
-    this.filesService.selectedEntry = value;
-  }
+
 
   prevSong(): void{
     this.filesService.selectPreviousEntry();
@@ -117,20 +101,7 @@ export class DisplayMenuComponent implements OnInit {
     500);
   }
 
-  allFilesLoaded(){
-    // for(var val of this.pathEntries)
-    //   if(!val.tagState.tagsLoaded){
-    //     return false;
-    //   }
-    // return true;
-    return this.pathEntries.every(el => el.tagState.tagsLoaded)
-  }
 
-  get filesLoaded(){
-    return this.pathEntries.filter(el => el.tagState.tagsLoaded);
-  }
 
-  get filesEdited(){
-    return this.pathEntries.filter(el => el.tagState.isEdited())
-  }
+ 
 }

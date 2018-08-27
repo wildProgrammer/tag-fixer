@@ -1,32 +1,4 @@
-<div class="file-list">
-    <div>
-        <img 
-            src="../../../assets/images/file-loading2.svg"
-            id="file-loading-spinner"
-            [ngClass]="{'hide-spinner': allFilesLoaded()}"
-        />
-        <div *ngIf="allFilesLoaded()" id="files-loaded-counter">
-        {{
-            filesEdited.length + '/' + pathEntries.length + ' files edited'
-        }}
-        
-    </div>
-    </div>
-    <ul>
-        <li *ngFor="let entry of pathEntries" (click)="selectEntry(entry)" 
-        [ngClass]="{'selected': entry === selectedEntry,
-        'edited': entry && entry.tagState.isEdited(), 
-        'invisible-li': entry && !entry.tagState.tagsLoaded }"
-        [title]="entry?.file.fileName"
-            >
-            <div>{{entry?.file.fileName.trim()}}</div>
-        </li>  
-        <!-- <li>04 - A Step Back.mp3</li>
-            <li>04 - A Step Back.mp3</li>
-            <li>04 - A Step Back.mp3</li>
-            <li>04 - A Step Back allalalalalalalalal.mp3</li> -->
-    </ul>
-</div>
+<app-song-list></app-song-list>
 <div class="container">
     <div class="edit-window">
         <div class="path-title">
@@ -43,7 +15,8 @@
         <div class="footer">
             <ul>
                 <li 
-                    [ngClass]="{'invisible-button': selectedEntry && !selectedEntry.tagState.isEdited()}"
+                    [hidden]='selectedEntry && !selectedEntry.tagState.isEdited()'
+                    
                     (click)="toSuggestions()"
                     >
                     <img src="../../../assets/images/curved-arrow.svg" class="reverse-icon" />
